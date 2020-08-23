@@ -7,14 +7,16 @@ using SmaliLib.Patches;
 
 namespace SmaliPatcherMin
 {
-    //TODO make the patches more nice (replace constant path.combine with cached value, see MockLocations)
     class Program
     {
         static void Main(string[] args)
         {
+            Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            IPlatform platform = new Platform();
+            SmaliLibMain lib = new SmaliLibMain(platform);
             if (args.Select(s => s.TrimStart('-', '/')).Contains("help"))
             {
-                Console.WriteLine(@"SmaliPatcher.JF min
+                Console.WriteLine(@$"SmaliPatcher.JF min ({lib.GetVersion()})
 Usage:  patcher [parameters...]
 
 Parameters:
@@ -24,9 +26,6 @@ Parameters:
     skip-cleanup     -  prevents removal of temporary files. This is mostly useful for testing");
                 return;
             }
-            Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            IPlatform platform = new Platform();
-            SmaliLibMain lib = new SmaliLibMain(platform);
             if (!args.Select(s => s.TrimStart('-', '/')).Contains("no-download"))
                 lib.DownloadDeps();
             lib.CheckResources();

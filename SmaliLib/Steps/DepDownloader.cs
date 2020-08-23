@@ -46,7 +46,13 @@ namespace SmaliLib.Steps
         {
             using MemoryStream stream = new MemoryStream(zip);
             using ZipArchive file = new ZipArchive(stream);
-            file.ExtractToDirectory("bin", true);
+            foreach (ZipArchiveEntry entry in file.Entries)
+            {
+                entry.ExtractToFile(Path.Combine("bin", entry.Name), true);
+            }
+            //.NET Standard 2.1 also supports
+            //file.ExtractToDirectory("bin", true);
+            //But .NET Framework doesn't support that version and is needed for MaterialSkin
         }
 
         private static void GetUrls(IPlatform platform)

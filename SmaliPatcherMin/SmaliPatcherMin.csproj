@@ -3,6 +3,13 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <ApplicationVersion>0.0.6.9</ApplicationVersion>
+        <AssemblyTitle>SmaliPatcherMin</AssemblyTitle>
+        <Company>fOmey</Company>
+        <Title>SmaliPatcherMin</Title>
+        <Product>SmaliPatcher</Product>
+        <Copyright>Copyright © fOmey 2019</Copyright>
+        <ApplicationIcon>icon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>

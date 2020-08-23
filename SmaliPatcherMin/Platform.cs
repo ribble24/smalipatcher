@@ -51,8 +51,6 @@ namespace SmaliPatcherMin
 
         public void ShowOutput(string path)
         {
-            //TODO use this in the Forms UI
-            //Process.Start("explorer.exe", $"/select,{path}");
             Console.WriteLine($"Complete: {path}");
         }
     }

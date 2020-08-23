@@ -3,7 +3,6 @@
         <TargetFramework>net472</TargetFramework>
         <OutputType>WinExe</OutputType>
         <ApplicationVersion>0.0.6.9</ApplicationVersion>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <AssemblyTitle>SmaliPatcher</AssemblyTitle>
         <Company>fOmey</Company>
         <Title>SmaliPatcher</Title>
@@ -12,6 +11,7 @@
         <ProjectGuid>df723fae-320e-4e52-bd56-db949691ef48</ProjectGuid>
         <RootNamespace>SmaliPatcher</RootNamespace>
         <LangVersion>9</LangVersion>
+        <ApplicationIcon>icon.ico</ApplicationIcon>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System.IO.Compression" />

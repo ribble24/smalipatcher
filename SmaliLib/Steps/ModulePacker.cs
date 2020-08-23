@@ -92,32 +92,18 @@ namespace SmaliLib.Steps
                     writer.Write($"id=fomey.smalipatcher\nname=Smali Patcher\nversion=v{Version}\nversionCode=1\nauthor=fOmeyyy\ndescription=Collection of framework patches.");
                 }
             }
-            /*
-                _mainForm.StatusUpdate("Cleaning up..");
-                if (!_mainForm.SkipCleanUp)
-                {
-                    Directory.Delete("tmp", true);
-                    if (!_mainForm.SimulateAdb)
-                        Directory.Delete("adb", true);
-                    Directory.Delete("smali", true);
-                    Directory.Delete("apk", true);
-                }
-                if (File.Exists("SmaliPatcherModule-" + Application.ProductVersion + "-fOmey@XDA.zip"))
-                    Process.Start("explorer.exe",
-                        "/select," +
-                        Path.GetFullPath("SmaliPatcherModule-" + Application.ProductVersion + "-fOmey@XDA.zip"));
-                _mainForm.DebugUpdate("\n*** Complete ***");
-                _mainForm.StatusUpdate("Idle..");
-                return true;
-             */
             platform.Log("Cleaning up");
             if (!skipCleanup)
             {
-                Directory.Delete("tmp", true);
+                if (Directory.Exists("tmp"))
+                    Directory.Delete("tmp", true);
                 if (removeFramework)
-                    Directory.Delete("adb", true);
-                Directory.Delete("smali", true);
-                Directory.Delete("apk", true);
+                    if (Directory.Exists("adb"))
+                        Directory.Delete("adb", true);
+                if (Directory.Exists("smali"))
+                    Directory.Delete("smali", true);
+                if (Directory.Exists("apk"))
+                    Directory.Delete("apk", true);
             }
             if (PlatformCheck.IsWindows)
                 platform.ShowOutput(Path.GetFullPath(file));

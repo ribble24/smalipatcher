@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationVersion>0.0.6.9</ApplicationVersion>
+    <AssemblyTitle>SmaliPatcher</AssemblyTitle>
+    <Company>fOmey</Company>
+    <Title>SmaliPatcher</Title>
+    <Product>SmaliPatcher</Product>
+    <Copyright>Copyright © fOmey 2019</Copyright>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialSkin.2" Version="2.1.2" />
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SmaliLib\SmaliLib.csproj" />
+  </ItemGroup>
+
+</Project>

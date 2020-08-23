@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using SmaliLib.Patches;
 using SmaliLib.Steps;
 
@@ -12,7 +13,7 @@ namespace SmaliLib
 
         public void DownloadDeps() => DepDownloader.Download(_platform);
 
-        public void CheckResources()
+        public bool CheckResources()
         {
             try
             {
@@ -23,7 +24,7 @@ namespace SmaliLib
                 _platform.ErrorCritical(PlatformCheck.IsWindows
                     ? $"Could not run adb. Please make sure your AV allows execution ({e.Message})"
                     : $"Could not run adb. You need to install it system-wide on non-windows platforms ({e.Message})");
-                return;
+                return false;
             }
             _platform.Log("ADB works");
             try
@@ -35,10 +36,15 @@ namespace SmaliLib
                 _platform.ErrorCritical(PlatformCheck.IsWindows
                     ? $"Could not run vdexExtractor. Please make sure your AV allows execution ({e.Message})"
                     : $"Could not run vdexExtractor. You need to install it system-wide on non-windows platforms ({e.Message})");
-                return;
+                return false;
             }
             _platform.Log("vdexExtractor works");
-            if (DepChecks.CheckJava(_platform)) _platform.Log("All deps seem good");
+            if (DepChecks.CheckJava(_platform))
+            {
+                _platform.Log("All deps seem good");
+                return true;
+            }
+            return false;
         }
 
         public string DumpFramework() => FrameworkDumper.Dump(_platform);
@@ -54,5 +60,7 @@ namespace SmaliLib
         };
 
         public void PackModule(IPatch[] patches, bool skipCleanup, bool removeFramework = true) => ModulePacker.Pack(_platform, patches, skipCleanup, removeFramework);
+
+        public Version GetVersion() => Assembly.GetExecutingAssembly().GetName().Version;
     }
 }
