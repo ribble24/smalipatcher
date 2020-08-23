@@ -4,6 +4,7 @@ pages:
   image: debian:stable
   stage: deploy
   script:
+    - apt install zip -y
     - zip -r source.zip ./*
     - mkdir public
     - cp source.zip public/
