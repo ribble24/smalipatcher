@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
         <OutputType>WinExe</OutputType>
-        <ApplicationVersion>0.0.6.9</ApplicationVersion>
+        <Version>0.0.6.9</Version>
         <AssemblyTitle>SmaliPatcher</AssemblyTitle>
         <Company>fOmey</Company>
         <Title>SmaliPatcher</Title>
@@ -18,6 +18,7 @@
         <Reference Include="System.Windows.Forms" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="Costura.Fody" Version="4.1.0" />
         <PackageReference Include="DotNetZip" Version="1.13.8" />
         <PackageReference Include="MaterialSkin" Version="0.2.1" />
         <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />

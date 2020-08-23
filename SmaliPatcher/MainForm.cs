@@ -27,21 +27,21 @@ namespace SmaliPatcher
             lib = new SmaliLibMain(platform);
             InitializeComponent();
             logBox.Text += lib.GetVersion().ToString();
-            _optionsList.Columns.Add("", -2);
-            _optionsList.Columns.Add("", -2);
-            _optionsList.Columns.Add("", -2);
+            optionsList.Columns.Add("", -2);
+            optionsList.Columns.Add("", -2);
+            optionsList.Columns.Add("", -2);
             foreach (IPatch patch in lib.GetPatches())
             {
                 patches.Add(patch, patch is MockLocations || patch is HighVolumeWarning);
-                _optionsList.Items.Add("").SubItems.AddRange(new string[2]
+                optionsList.Items.Add("").SubItems.AddRange(new string[2]
                 {
                     patch.Title,
                     patch.Description
                 });
-                _optionsList.Items[_optionsList.Items.Count - 1].Checked = patches[patch];
+                optionsList.Items[optionsList.Items.Count - 1].Checked = patches[patch];
             }
 
-            _optionsList.ItemCheck += (sender, e) =>
+            optionsList.ItemCheck += (sender, e) =>
             {
                 patches[patches.Keys.ElementAt(e.Index)] = e.NewValue == CheckState.Checked;
             };
@@ -92,16 +92,16 @@ namespace SmaliPatcher
             if (commonOpenFileDialog.ShowDialog() != CommonFileDialogResult.Ok)
                 return;
             frameworkBox.Text = commonOpenFileDialog.FileName;
-            _optionsList.Items.Clear();
+            optionsList.Items.Clear();
             foreach (IPatch patch in patches.Keys)
             {
                 patches[patch] = false;
-                _optionsList.Items.Add("").SubItems.AddRange(new string[2]
+                optionsList.Items.Add("").SubItems.AddRange(new string[2]
                 {
                     patch.Title,
                     patch.Description
                 });
-                _optionsList.Items[_optionsList.Items.Count - 1].Checked = patches[patch];
+                optionsList.Items[optionsList.Items.Count - 1].Checked = patches[patch];
             }
         }
 
@@ -132,6 +132,16 @@ namespace SmaliPatcher
                     UpdateAvailable(true);
                 }));
             }).Start();
+        }
+
+        private void paypalPanel_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=pauly.galea@gmail.com&item_name=fOmey");
+        }
+
+        private void authorLabel_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://forum.xda-developers.com/member.php?u=1620550");
         }
     }
 }

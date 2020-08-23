@@ -22,8 +22,8 @@ namespace SmaliLib
             catch (Exception e)
             {
                 _platform.ErrorCritical(PlatformCheck.IsWindows
-                    ? $"Could not run adb. Please make sure your AV allows execution ({e.Message})"
-                    : $"Could not run adb. You need to install it system-wide on non-windows platforms ({e.Message})");
+                    ? $"Could not run adb (https://developer.android.com/studio/command-line/adb). Please make sure your AV allows execution ({e.Message})"
+                    : $"Could not run adb (https://developer.android.com/studio/command-line/adb). You need to install it system-wide on non-windows platforms ({e.Message})");
                 return false;
             }
             _platform.Log("ADB works");
@@ -34,8 +34,8 @@ namespace SmaliLib
             catch (Exception e)
             {
                 _platform.ErrorCritical(PlatformCheck.IsWindows
-                    ? $"Could not run vdexExtractor. Please make sure your AV allows execution ({e.Message})"
-                    : $"Could not run vdexExtractor. You need to install it system-wide on non-windows platforms ({e.Message})");
+                    ? $"Could not run vdexExtractor (https://github.com/anestisb/vdexExtractor). Please make sure your AV allows execution ({e.Message})"
+                    : $"Could not run vdexExtractor (https://github.com/anestisb/vdexExtractor). You need to install it system-wide on non-windows platforms ({e.Message})");
                 return false;
             }
             _platform.Log("vdexExtractor works");

@@ -59,9 +59,12 @@ namespace SmaliLib.Steps
                         if (files4.Length == 0)
                             files4 = Directory.GetFiles(path, "boot-" + str1 + ".oat", SearchOption.AllDirectories);
                         string str2 = "";
+                        string c = Path.DirectorySeparatorChar.ToString();
+                        if (c == "\\")
+                            c = "\\\\";
                         if (files2.Length != 0 && files2[0].Contains("arm"))
                         {
-                            string str3 = new Regex("\\b\\\\arm.*\\\\\\b").Match(files2[0]).Value;
+                            string str3 = new Regex($"\\b{c}arm.*{c}\\b").Match(files2[0]).Value;
                             str2 = str3.Substring(0, str3.Length - 1);
                         }
                         if (str2 == "" && files4.Length != 0)
@@ -346,22 +349,22 @@ namespace SmaliLib.Steps
             if (string.IsNullOrEmpty(file))
             {
                 if (Directory.Exists(Path.Combine("tmp", "smali")))
-                    str = Path.Combine("tmp", "smali") + Path.PathSeparator;
+                    str = Path.Combine("tmp", "smali") + Path.DirectorySeparatorChar;
                 else if (Directory.Exists("smali"))
-                    str = "smali" + Path.PathSeparator;
+                    str = "smali" + Path.DirectorySeparatorChar;
             }
             else if (File.Exists(Path.Combine("tmp", file)))
-                str = "tmp" + Path.PathSeparator;
+                str = "tmp" + Path.DirectorySeparatorChar;
             else if (File.Exists(Path.Combine("tmp", "smali", file)))
-                str = Path.Combine("tmp", "smali") + Path.PathSeparator;
+                str = Path.Combine("tmp", "smali") + Path.DirectorySeparatorChar;
             else if (File.Exists(Path.Combine("tmp", "smali_classes2", file)))
-                str = Path.Combine("tmp", "smali_classes2") + Path.PathSeparator;
+                str = Path.Combine("tmp", "smali_classes2") + Path.DirectorySeparatorChar;
             else if (File.Exists(Path.Combine("tmp", "smali_classes3", file)))
-                str = Path.Combine("tmp", "smali_classes3") + Path.PathSeparator;
+                str = Path.Combine("tmp", "smali_classes3") + Path.DirectorySeparatorChar;
             else if (File.Exists(Path.Combine("tmp", "smali_classes4", file)))
-                str = Path.Combine("tmp", "smali_classes4") + Path.PathSeparator;
+                str = Path.Combine("tmp", "smali_classes4") + Path.DirectorySeparatorChar;
             else if (File.Exists(Path.Combine("smali", file)))
-                str = "smali" + Path.PathSeparator;
+                str = "smali" + Path.DirectorySeparatorChar;
             return str;
         }
 
@@ -381,7 +384,7 @@ namespace SmaliLib.Steps
                 JarCompile(platform, Path.Combine("tmp", "dist", withoutExtension + ".jar"), "tmp");
             else
             {
-                if (baseStr == $"smali{Path.PathSeparator}")
+                if (baseStr == $"smali{Path.DirectorySeparatorChar}")
                     OdexCompile(platform, withoutExtension, Path.GetDirectoryName(targetFilePath));
             }
         }

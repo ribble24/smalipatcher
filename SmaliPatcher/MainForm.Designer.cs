@@ -24,18 +24,18 @@ namespace SmaliPatcher
         }
 
         #region Windows Form Designer generated code
-
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.patchDivider = new MaterialSkin.Controls.MaterialDivider();
             this.frameworkDivider = new MaterialSkin.Controls.MaterialDivider();
             this.logBox = new MaterialSkin.Controls.MaterialMultiLineTextBox();
             this.bottomBar = new MaterialSkin.Controls.MaterialDivider();
-            this._optionsList = new System.Windows.Forms.ListView();
+            this.optionsList = new System.Windows.Forms.ListView();
             this.statusLabel = new System.Windows.Forms.Label();
             this.authorLabel = new System.Windows.Forms.Label();
             this.patchOptionsLabel = new System.Windows.Forms.Label();
@@ -43,20 +43,20 @@ namespace SmaliPatcher
             this.frameworkBox = new MaterialSkin.Controls.MaterialTextBox();
             this.frameworkBrowseButton = new MaterialSkin.Controls.MaterialButton();
             this.patchButton = new MaterialSkin.Controls.MaterialButton();
+            this.paypalPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // materialDivider1
+            // patchDivider
             // 
-            this.materialDivider1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.patchDivider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialDivider1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialDivider1.Depth = 0;
-            this.materialDivider1.Location = new System.Drawing.Point(0, 263);
-            this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialDivider1.Name = "materialDivider1";
-            this.materialDivider1.Size = new System.Drawing.Size(454, 38);
-            this.materialDivider1.TabIndex = 0;
-            this.materialDivider1.Text = "patchDivider";
+            this.patchDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.patchDivider.Depth = 0;
+            this.patchDivider.Location = new System.Drawing.Point(0, 263);
+            this.patchDivider.MouseState = MaterialSkin.MouseState.HOVER;
+            this.patchDivider.Name = "patchDivider";
+            this.patchDivider.Size = new System.Drawing.Size(454, 38);
+            this.patchDivider.TabIndex = 0;
             // 
             // frameworkDivider
             // 
@@ -99,22 +99,22 @@ namespace SmaliPatcher
             this.bottomBar.Size = new System.Drawing.Size(454, 23);
             this.bottomBar.TabIndex = 4;
             // 
-            // _optionsList
+            // optionsList
             // 
-            this._optionsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.optionsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._optionsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._optionsList.CheckBoxes = true;
-            this._optionsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this._optionsList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this._optionsList.HideSelection = false;
-            this._optionsList.Location = new System.Drawing.Point(12, 307);
-            this._optionsList.Name = "_optionsList";
-            this._optionsList.Size = new System.Drawing.Size(430, 112);
-            this._optionsList.TabIndex = 16;
-            this._optionsList.UseCompatibleStateImageBehavior = false;
-            this._optionsList.View = System.Windows.Forms.View.Details;
+            this.optionsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.optionsList.CheckBoxes = true;
+            this.optionsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.optionsList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.optionsList.HideSelection = false;
+            this.optionsList.Location = new System.Drawing.Point(12, 307);
+            this.optionsList.Name = "optionsList";
+            this.optionsList.Size = new System.Drawing.Size(430, 112);
+            this.optionsList.TabIndex = 16;
+            this.optionsList.UseCompatibleStateImageBehavior = false;
+            this.optionsList.View = System.Windows.Forms.View.Details;
             // 
             // statusLabel
             // 
@@ -134,11 +134,12 @@ namespace SmaliPatcher
             this.authorLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
             this.authorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.authorLabel.ForeColor = System.Drawing.Color.White;
-            this.authorLabel.Location = new System.Drawing.Point(329, 34);
+            this.authorLabel.Location = new System.Drawing.Point(303, 34);
             this.authorLabel.Name = "authorLabel";
             this.authorLabel.Size = new System.Drawing.Size(113, 20);
             this.authorLabel.TabIndex = 17;
             this.authorLabel.Text = "fOmey @ XDA";
+            this.authorLabel.Click += new System.EventHandler(this.authorLabel_Click);
             // 
             // patchOptionsLabel
             // 
@@ -223,11 +224,23 @@ namespace SmaliPatcher
             this.patchButton.UseVisualStyleBackColor = true;
             this.patchButton.Click += new System.EventHandler(this.patchButton_Click);
             // 
+            // paypalPanel
+            // 
+            this.paypalPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
+            this.paypalPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("paypalPanel.BackgroundImage")));
+            this.paypalPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.paypalPanel.Location = new System.Drawing.Point(414, 24);
+            this.paypalPanel.Name = "paypalPanel";
+            this.paypalPanel.Size = new System.Drawing.Size(40, 40);
+            this.paypalPanel.TabIndex = 23;
+            this.paypalPanel.Click += new System.EventHandler(this.paypalPanel_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(454, 589);
+            this.Controls.Add(this.paypalPanel);
             this.Controls.Add(this.patchButton);
             this.Controls.Add(this.frameworkBrowseButton);
             this.Controls.Add(this.frameworkBox);
@@ -235,11 +248,12 @@ namespace SmaliPatcher
             this.Controls.Add(this.patchOptionsLabel);
             this.Controls.Add(this.authorLabel);
             this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this._optionsList);
+            this.Controls.Add(this.optionsList);
             this.Controls.Add(this.bottomBar);
             this.Controls.Add(this.logBox);
             this.Controls.Add(this.frameworkDivider);
-            this.Controls.Add(this.materialDivider1);
+            this.Controls.Add(this.patchDivider);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Smali Patcher";
             this.ResumeLayout(false);
@@ -247,13 +261,14 @@ namespace SmaliPatcher
 
         }
 
-        #endregion
+        private System.Windows.Forms.Panel paypalPanel;
+#endregion
 
-        private MaterialSkin.Controls.MaterialDivider materialDivider1;
+        private MaterialSkin.Controls.MaterialDivider patchDivider;
         private MaterialSkin.Controls.MaterialDivider frameworkDivider;
         public MaterialSkin.Controls.MaterialMultiLineTextBox logBox;
         private MaterialSkin.Controls.MaterialDivider bottomBar;
-        private System.Windows.Forms.ListView _optionsList;
+        private System.Windows.Forms.ListView optionsList;
         public System.Windows.Forms.Label statusLabel;
         private Label authorLabel;
         private Label patchOptionsLabel;
