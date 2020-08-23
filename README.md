@@ -1,1 +1,1 @@
-[Public source](jfronny.gitlab.io/smalipatcher/source.zip)
+[Public source](https://jfronny.gitlab.io/smalipatcher/source.zip)
