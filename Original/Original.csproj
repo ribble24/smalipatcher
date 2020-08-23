@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <OutputType>WinExe</OutputType>
+        <ApplicationVersion>0.0.6.9</ApplicationVersion>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AssemblyTitle>SmaliPatcher</AssemblyTitle>
+        <Company>fOmey</Company>
+        <Title>SmaliPatcher</Title>
+        <Product>SmaliPatcher</Product>
+        <Copyright>Copyright © fOmey 2019</Copyright>
+        <ProjectGuid>df723fae-320e-4e52-bd56-db949691ef48</ProjectGuid>
+        <RootNamespace>SmaliPatcher</RootNamespace>
+        <LangVersion>9</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System.IO.Compression" />
+        <Reference Include="System.Windows.Forms" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="DotNetZip" Version="1.13.8" />
+        <PackageReference Include="MaterialSkin" Version="0.2.1" />
+        <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+    </ItemGroup>
+</Project>
