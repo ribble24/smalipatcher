@@ -1,0 +1,3 @@
+- No more tmp directory for downloads! All files are downloaded as data and zips are extracted in-memory. module_installer.sh is also placed in bin
+- The module creation is also in-memory
+- Patching code is no longer all over the place and centralized in IPatch with callbacks for relevant places

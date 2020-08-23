@@ -83,6 +83,7 @@ namespace SmaliPatcher
                     File.WriteAllText("tmp\\magisk\\common\\post-fs-data.sh", _postFsData.Replace("\r\n", "\n"),
                         Encoding.ASCII);
                 }
+                
                 File.WriteAllText("tmp\\magisk\\install.sh",
                     _installSh0.Replace("\r\n", "\n") + str2.Replace("\r\n", "\n") + _installSh1.Replace("\r\n", "\n") +
                     str1.Replace("\r\n", "\n") + _installSh2.Replace("\r\n", "\n"), Encoding.ASCII);

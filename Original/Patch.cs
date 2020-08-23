@@ -10,8 +10,6 @@ namespace SmaliPatcher
 {
     public class Patch
     {
-        private string _jarAddress;
-        private string _odexAddress;
         private Adb _adb;
         private bool _dexPatcherCoreRequired;
         private string _dexPatcherTarget;
@@ -26,19 +24,6 @@ namespace SmaliPatcher
             if (_mainForm != null)
                 return;
             _mainForm = (MainForm) sender;
-        }
-
-        public void TargetJarMethod(string jarAddress)
-        {
-            if (_download == null)
-            {
-                _download = new Download();
-                _download.Init(_mainForm);
-            }
-            JarDecompile(jarAddress);
-            if (!Directory.Exists("apk") || Directory.GetFiles("apk").Length == 0)
-                return;
-            _download.DownloadMagisk();
         }
 
         public void ProcessFrameworkDirectory(string folderPath)
@@ -158,10 +143,9 @@ namespace SmaliPatcher
             _download.DownloadMagisk();
         }
 
-        public void JarDecompile(string jarAddress)
+        private void JarDecompile(string jarAddress)
         {
             string fileName = Path.GetFileName(jarAddress);
-            _jarAddress = jarAddress;
             if (!Directory.Exists("bin") || !File.Exists("bin\\apktool.jar"))
                 return;
             _mainForm.StatusUpdate("Decompiling..");
@@ -190,7 +174,7 @@ namespace SmaliPatcher
             _hasBeenDeodexed = false;
         }
 
-        public void JarCompile(string outputFile, string sourceDirectory)
+        private void JarCompile(string outputFile, string sourceDirectory)
         {
             if (!Directory.Exists("bin") || !File.Exists("bin\\apktool.jar"))
                 return;
@@ -223,40 +207,12 @@ namespace SmaliPatcher
             }
         }
 
-        public void ZipAlign(string jarAddress)
-        {
-            string fileName = Path.GetFileName(jarAddress);
-            if (!Directory.Exists("bin") || !File.Exists("bin\\zipalign.exe"))
-                return;
-            _mainForm.StatusUpdate("Zipaligning..");
-            StartProcess("bin\\zipalign.exe", "-f 4 \"" + jarAddress + "\" \"" + jarAddress + "_zipaligned\"");
-            if (File.Exists(jarAddress) && File.Exists(jarAddress + "_zipaligned"))
-            {
-                File.Delete(jarAddress);
-                File.Move(jarAddress + "_zipaligned", jarAddress);
-                _mainForm.DebugUpdate("\n==> Zipaligned " + fileName);
-            }
-            else if (!File.Exists(jarAddress))
-            {
-                _mainForm.DebugUpdate("\n!!! ERROR: Zipalign failed - input file not found.");
-                _mainForm.StatusUpdate("ERROR..");
-            }
-            else
-            {
-                if (File.Exists(jarAddress + "_zipaligned"))
-                    return;
-                _mainForm.DebugUpdate("\n!!! ERROR: Zipalign failed - output file not found.");
-                _mainForm.StatusUpdate("ERROR..");
-            }
-        }
-
-        public void OdexDeodex(
+        private void OdexDeodex(
             string odexPath,
             string targetJarPath,
             string frameworkPath,
             string api)
         {
-            _odexAddress = odexPath;
             if (!Directory.Exists("bin") || !File.Exists("bin\\baksmali.jar"))
                 return;
             string fileName = Path.GetFileName(odexPath);
@@ -289,7 +245,7 @@ namespace SmaliPatcher
             }
         }
 
-        public void OdexCompile(string targetFileNoExt, string basePath)
+        private void OdexCompile(string targetFileNoExt, string basePath)
         {
             if (!Directory.Exists("bin") || !File.Exists("bin\\smali.jar"))
                 return;
@@ -321,7 +277,7 @@ namespace SmaliPatcher
             }
         }
 
-        public void DexPatcher(string jar, string dexPatch)
+        private void DexPatcher(string jar, string dexPatch)
         {
             if (!Directory.Exists("bin") || !File.Exists("bin\\dexpatcher.jar"))
                 return;
@@ -349,7 +305,7 @@ namespace SmaliPatcher
             _mainForm.DebugUpdate("\n==> Merged patch: " + Path.GetFileNameWithoutExtension(dexPatch));
         }
 
-        public void VdexExtract(string vdexAddress, string jarFile)
+        private void VdexExtract(string vdexAddress, string jarFile)
         {
             if (!Directory.Exists("bin") || !File.Exists("bin\\vdexExtractor.exe"))
                 return;

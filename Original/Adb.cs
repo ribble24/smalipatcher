@@ -89,18 +89,6 @@ namespace SmaliPatcher
             StartProcess("bin\\adb.exe", "shell \"" + cmd + "\"", redirectOutput);
         }
 
-        private bool GetPatchStatus(string patchTitle)
-        {
-            Patches = _mainForm.Patches;
-            return Patches.Find(x => x.PatchTitle.Contains(patchTitle)).Status;
-        }
-
-        private string GetPatchTargetFile(string patchTitle)
-        {
-            Patches = _mainForm.Patches;
-            return Patches.Find(x => x.PatchTitle.Contains(patchTitle)).TargetFile;
-        }
-
         private void StartProcess(string exe, string args, bool redirectOutput)
         {
             try
