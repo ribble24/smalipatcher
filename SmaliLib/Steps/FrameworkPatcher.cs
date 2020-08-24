@@ -157,9 +157,12 @@ namespace SmaliLib.Steps
             {
                 foreach (IPatch patch in _patches)
                 {
-                    patch.DexPatcherTarget = _dexPatcherTarget;
-                    patch.DexPatcherCoreRequired = _dexPatcherCoreRequired;
-                    patch.JarCompileStep(platform);
+                    if (patch.TargetFile == fileName)
+                    {
+                        patch.DexPatcherTarget = _dexPatcherTarget;
+                        patch.DexPatcherCoreRequired = _dexPatcherCoreRequired;
+                        patch.JarCompileStep(platform);
+                    }
                 }
                 if (!Directory.Exists("apk"))
                     Directory.CreateDirectory("apk");
@@ -374,9 +377,12 @@ namespace SmaliLib.Steps
             string withoutExtension = Path.GetFileNameWithoutExtension(targetFile);
             foreach (IPatch patch in _patches)
             {
-                patch.DexPatcherTarget = _dexPatcherTarget;
-                patch.DexPatcherCoreRequired = _dexPatcherCoreRequired;
-                baseStr = patch.PatchFileStep(platform, baseStr);
+                if (patch.TargetFile == withoutExtension + ".jar")
+                {
+                    patch.DexPatcherTarget = _dexPatcherTarget;
+                    patch.DexPatcherCoreRequired = _dexPatcherCoreRequired;
+                    baseStr = patch.PatchFileStep(platform, baseStr);
+                }
             }
             if (baseStr == "")
                 baseStr = GetPath("");
