@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.IO.Compression;
 using SmaliLib.Steps;
 
@@ -9,12 +10,14 @@ namespace SmaliLib.Patches
         public override string Title { get; } = "Signature spoofing";
         public override string Description { get; } = "Allow app signature spoofing permission";
         public override string TargetFile { get; } = "services.jar";
+
         public override void JarCompileStep(IPlatform platform)
         {
             if (DexPatcherCoreRequired)
             {
                 DexPatcher(platform, Path.Combine("tmp", "dist", "services.jar"), DexPatcherTarget);
-                DexPatcher(platform, Path.Combine("tmp", "dist", "services.jar"), Path.Combine("bin", "sigspoof_core.dex"));
+                DexPatcher(platform, Path.Combine("tmp", "dist", "services.jar"),
+                    Path.Combine("bin", "sigspoof_core.dex"));
             }
             else
                 platform.Log("\n==> Signature spoofing patch already enabled.");
@@ -34,7 +37,7 @@ namespace SmaliLib.Patches
                     if (startIndex1 == -1)
                         startIndex1 = str2.LastIndexOf(".method generatePackageInfo(");
                     int startIndex2 = startIndex1;
-                    while (str2.Substring(startIndex2, 2) != ";\r")
+                    while (str2.Substring(startIndex2, 2) != $";{Environment.NewLine[0]}")
                         startIndex2 += 2;
                     int num = startIndex2 + 1;
                     if (str2.Substring(startIndex1, num - startIndex1).Contains("PackageParser"))

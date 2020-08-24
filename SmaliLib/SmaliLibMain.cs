@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
 using SmaliLib.Patches;
 using SmaliLib.Steps;
@@ -8,7 +7,7 @@ namespace SmaliLib
 {
     public class SmaliLibMain
     {
-        private IPlatform _platform;
+        private readonly IPlatform _platform;
         public SmaliLibMain(IPlatform platform) => _platform = platform;
 
         public void DownloadDeps() => DepDownloader.Download(_platform);
@@ -59,7 +58,8 @@ namespace SmaliLib
             new SignatureSpoofing(), new SignatureVerification()
         };
 
-        public void PackModule(IPatch[] patches, bool skipCleanup, bool removeFramework = true) => ModulePacker.Pack(_platform, patches, skipCleanup, removeFramework);
+        public void PackModule(IPatch[] patches, bool skipCleanup, bool removeFramework = true) =>
+            ModulePacker.Pack(_platform, patches, skipCleanup, removeFramework);
 
         public Version GetVersion() => Assembly.GetExecutingAssembly().GetName().Version;
     }

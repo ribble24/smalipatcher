@@ -1,20 +1,19 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
 
 namespace SmaliLib.Patches
 {
     public abstract class IPatch
     {
+        public bool DexPatcherCoreRequired;
+        public string DexPatcherTarget;
         public abstract string Title { get; }
         public abstract string Description { get; }
         public abstract string TargetFile { get; }
+        public bool PostFsData { get; protected set; } = false;
         public abstract void JarCompileStep(IPlatform platform);
         public abstract string PatchFileStep(IPlatform platform, string baseStr);
         public abstract void PackModuleStep(ZipArchive archive);
-        public bool DexPatcherCoreRequired;
-        public string DexPatcherTarget;
-        public bool PostFsData { get; protected set; } = false;
 
         protected void DexPatcher(IPlatform platform, string jar, string dexPatch)
         {

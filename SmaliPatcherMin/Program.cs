@@ -7,9 +7,9 @@ using SmaliLib.Patches;
 
 namespace SmaliPatcherMin
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             IPlatform platform = new Platform();
@@ -48,15 +48,16 @@ Parameters:
                             ? lib.DumpFramework()
                             : args.First(s => s.TrimStart('-', '/').StartsWith("framework:"))
                                 .TrimStart('-', '\\').Substring(10);
-                        
+
                         //Nice menu
                         IPatch[] available = lib.GetPatches();
-                        IPatch[] selected = new [] {available.First(s => s is HighVolumeWarning), available.First(s => s is MockLocations)};
+                        IPatch[] selected =
+                            {available.First(s => s is HighVolumeWarning), available.First(s => s is MockLocations)};
                         bool selecting = true;
                         int currentI = 0;
                         while (selecting)
                         {
-                            IPatch[] current = new[] {available[currentI]};
+                            IPatch[] current = {available[currentI]};
                             //Drawing
                             Console.BackgroundColor = ConsoleColor.Black;
                             Console.ForegroundColor = ConsoleColor.White;
@@ -94,14 +95,17 @@ Parameters:
                                 case ConsoleKey.LeftArrow:
                                 case ConsoleKey.RightArrow:
                                 case ConsoleKey.Spacebar:
-                                    selected = selected.Contains(available[currentI]) ? selected.Except(current).ToArray() : selected.Concat(current).ToArray();
+                                    selected = selected.Contains(available[currentI])
+                                        ? selected.Except(current).ToArray()
+                                        : selected.Concat(current).ToArray();
                                     break;
                             }
                         }
                         Console.ResetColor();
                         Console.Clear();
                         lib.PatchFramework(framework, selected);
-                        lib.PackModule(selected, args.Select(s => s.TrimStart('-', '/')).Contains("skip-cleanup"), pullFramework);
+                        lib.PackModule(selected, args.Select(s => s.TrimStart('-', '/')).Contains("skip-cleanup"),
+                            pullFramework);
                     }
                     break;
             }

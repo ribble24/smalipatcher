@@ -9,6 +9,7 @@ namespace SmaliLib.Patches
         public override string Title { get; } = "High volume warning";
         public override string Description { get; } = "Disable high volume popup dialog";
         public override string TargetFile { get; } = "services.jar";
+
         public override void JarCompileStep(IPlatform platform)
         {
         }

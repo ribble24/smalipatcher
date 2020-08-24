@@ -9,6 +9,7 @@ namespace SmaliLib.Patches
         public override string Title { get; } = "Secure flag";
         public override string Description { get; } = "Allow screenshots/screensharing in secure apps";
         public override string TargetFile { get; } = "services.jar";
+
         public override void JarCompileStep(IPlatform platform)
         {
         }

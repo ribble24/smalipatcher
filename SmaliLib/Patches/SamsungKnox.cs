@@ -7,11 +7,10 @@ namespace SmaliLib.Patches
 {
     public class SamsungKnox : IPatch
     {
+        public SamsungKnox() => PostFsData = true;
         public override string Title { get; } = "Samsung Knox";
         public override string Description { get; } = "Bypass Samsung knox-trip protection (secure folder)";
         public override string TargetFile { get; } = "services.jar";
-
-        public SamsungKnox() => PostFsData = true;
 
         public override void JarCompileStep(IPlatform platform)
         {

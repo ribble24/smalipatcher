@@ -9,6 +9,7 @@ namespace SmaliLib.Patches
         public override string Title { get; } = "Signature verification";
         public override string Description { get; } = "Disable apk signature verification";
         public override string TargetFile { get; } = "services.jar";
+
         public override void JarCompileStep(IPlatform platform)
         {
         }

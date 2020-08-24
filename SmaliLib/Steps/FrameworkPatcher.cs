@@ -2,7 +2,6 @@
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Numerics;
 using System.Text.RegularExpressions;
 using SmaliLib.Patches;
 
@@ -10,10 +9,10 @@ namespace SmaliLib.Steps
 {
     internal class FrameworkPatcher
     {
-        private bool _hasBeenDeodexed;
         private bool _dexPatcherCoreRequired;
         private string _dexPatcherTarget;
-        private IPatch[] _patches;
+        private bool _hasBeenDeodexed;
+        private readonly IPatch[] _patches;
         private FrameworkPatcher(IPatch[] patches) => _patches = patches;
 
         public static void Patch(IPlatform platform, string folderPath, IPatch[] patches)
@@ -92,10 +91,12 @@ namespace SmaliLib.Steps
                             else if (files3.Length != 0 && num2 > 0L)
                                 patcher.VdexExtract(platform, files3[0], files1[0]);
                             else if (!flag && files4.Length != 0 && num3 > 0L)
-                                patcher.OdexDeodex(platform, Path.Combine(path, str2, Path.GetFileName(files4[0])), targetFile, Path.Combine(path, str2), api);
+                                patcher.OdexDeodex(platform, Path.Combine(path, str2, Path.GetFileName(files4[0])),
+                                    targetFile, Path.Combine(path, str2), api);
                             else if (!flag && files2.Length == 0 && files3.Length == 0 && files4.Length == 0)
                             {
-                                platform.ErrorCritical("Incomplete framework dump, required files missing (You can try running the patcher while booted into recovery mode with /system mounted, it may fix this)");
+                                platform.ErrorCritical(
+                                    "Incomplete framework dump, required files missing (You can try running the patcher while booted into recovery mode with /system mounted, it may fix this)");
                                 return;
                             }
                         }
@@ -119,7 +120,9 @@ namespace SmaliLib.Steps
             if (!Directory.Exists("bin") || !File.Exists(Path.Combine("bin", "apktool.jar")))
                 return;
             platform.Log($"Decompiling {jarAddress}");
-            BinW.LogIncremental(platform, BinW.RunCommand(Bin.java, $"-Xms1024m -Xmx1024m -jar {Path.Combine("bin", "apktool.jar")} d \"{jarAddress}\" -o tmp -f"));
+            BinW.LogIncremental(platform,
+                BinW.RunCommand(Bin.java,
+                    $"-Xms1024m -Xmx1024m -jar {Path.Combine("bin", "apktool.jar")} d \"{jarAddress}\" -o tmp -f"));
             if (_hasBeenDeodexed)
             {
                 if (File.Exists("classes.dex"))
@@ -156,14 +159,12 @@ namespace SmaliLib.Steps
             else
             {
                 foreach (IPatch patch in _patches)
-                {
                     if (patch.TargetFile == fileName)
                     {
                         patch.DexPatcherTarget = _dexPatcherTarget;
                         patch.DexPatcherCoreRequired = _dexPatcherCoreRequired;
                         patch.JarCompileStep(platform);
                     }
-                }
                 if (!Directory.Exists("apk"))
                     Directory.CreateDirectory("apk");
                 if (!File.Exists(Path.Combine("tmp", "dist", fileName)))
@@ -174,7 +175,8 @@ namespace SmaliLib.Steps
             }
         }
 
-        private void OdexDeodex(IPlatform platform, string odexPath, string targetJarPath, string frameworkPath, string api)
+        private void OdexDeodex(IPlatform platform, string odexPath, string targetJarPath, string frameworkPath,
+            string api)
         {
             if (!Directory.Exists("bin") || !File.Exists(Path.Combine("bin", "baksmali.jar")))
                 return;
@@ -210,7 +212,9 @@ namespace SmaliLib.Steps
             platform.Log("Generating classes");
             if (Directory.Exists("smali"))
             {
-                BinW.LogIncremental(platform, BinW.RunCommand(Bin.java, $"-Xms1024m -Xmx1024m -jar {Path.Combine("bin", "smali.jar")} a --verbose smali -o classes.dex"));
+                BinW.LogIncremental(platform,
+                    BinW.RunCommand(Bin.java,
+                        $"-Xms1024m -Xmx1024m -jar {Path.Combine("bin", "smali.jar")} a --verbose smali -o classes.dex"));
                 if (File.Exists("classes.dex"))
                 {
                     platform.Log("Generated classes.dex");
@@ -252,7 +256,8 @@ namespace SmaliLib.Steps
             {
                 if (File.Exists(Path.Combine("bin", "classes.dex")))
                     File.Delete(Path.Combine("bin", "classes.dex"));
-                File.Move(Path.Combine("bin", Path.GetFileNameWithoutExtension(vdexAddress) + "_classes.dex"), Path.Combine("bin", "classes.dex"));
+                File.Move(Path.Combine("bin", Path.GetFileNameWithoutExtension(vdexAddress) + "_classes.dex"),
+                    Path.Combine("bin", "classes.dex"));
             }
             string[] files2 =
                 Directory.GetFiles("bin", Path.GetFileNameWithoutExtension(vdexAddress) + "_classes*.dex");
@@ -328,7 +333,8 @@ namespace SmaliLib.Steps
                 FrameworkDumper.Push(platform, Path.Combine("bin", "compact_dex_converter"), "/data/local/tmp/");
                 FrameworkDumper.Shell(platform, "chmod 777 /data/local/tmp/compact_dex_converter");
                 FrameworkDumper.Push(platform, cdexAddress, "/data/local/tmp/");
-                FrameworkDumper.Shell(platform, "/data/local/tmp/compact_dex_converter /data/local/tmp/" + Path.GetFileName(cdexAddress));
+                FrameworkDumper.Shell(platform,
+                    "/data/local/tmp/compact_dex_converter /data/local/tmp/" + Path.GetFileName(cdexAddress));
                 FrameworkDumper.Pull(platform, "/data/local/tmp/" + Path.GetFileName(cdexAddress) + ".new", "bin");
                 FrameworkDumper.Shell(platform, "rm -f /data/local/tmp/compact_dex_converter");
                 FrameworkDumper.Shell(platform, "rm -f /data/local/tmp/" + Path.GetFileName(cdexAddress));
@@ -345,7 +351,7 @@ namespace SmaliLib.Steps
             else
                 platform.ErrorCritical("compact_dex_converter missing");
         }
-        
+
         public static string GetPath(string file)
         {
             string str = "";
@@ -376,14 +382,12 @@ namespace SmaliLib.Steps
             string baseStr = "";
             string withoutExtension = Path.GetFileNameWithoutExtension(targetFile);
             foreach (IPatch patch in _patches)
-            {
                 if (patch.TargetFile == withoutExtension + ".jar")
                 {
                     patch.DexPatcherTarget = _dexPatcherTarget;
                     patch.DexPatcherCoreRequired = _dexPatcherCoreRequired;
                     baseStr = patch.PatchFileStep(platform, baseStr);
                 }
-            }
             if (baseStr == "")
                 baseStr = GetPath("");
             if (baseStr.Contains("tmp"))

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
@@ -11,6 +10,7 @@ namespace SmaliLib.Steps
     internal static class ModulePacker
     {
         private static string Version => Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
         public static void Pack(IPlatform platform, IPatch[] patches, bool skipCleanup, bool removeFramework)
         {
             platform.Log("Creating archive");
@@ -57,7 +57,8 @@ namespace SmaliLib.Steps
                                   + "/system/framework/arm64/framework.odex\n";
                 }
                 if (File.Exists(Path.Combine("bin", "module_installer.sh")))
-                    archive.CreateEntryFromFile(Path.Combine("bin", "module_installer.sh"), "META-INF/com/google/android/update-binary");
+                    archive.CreateEntryFromFile(Path.Combine("bin", "module_installer.sh"),
+                        "META-INF/com/google/android/update-binary");
                 else
                 {
                     platform.Warning("Could not find module_installer.sh, writing blank dummy file");
@@ -69,7 +70,8 @@ namespace SmaliLib.Steps
                     using StreamWriter writer = new StreamWriter(s, Encoding.ASCII);
                     writer.Write("#MAGISK");
                 }
-                string str2 = $"\nPOSTFSDATA={patches.Aggregate(false, ((b, patch) => b | patch.PostFsData)).ToString().ToLower()}\n";
+                string str2 =
+                    $"\nPOSTFSDATA={patches.Aggregate(false, (b, patch) => b | patch.PostFsData).ToString().ToLower()}\n";
                 foreach (IPatch patch in patches) patch.PackModuleStep(archive);
                 entry = archive.CreateEntry("install.sh");
                 using (Stream s = entry.Open())
@@ -89,7 +91,8 @@ namespace SmaliLib.Steps
                 using (Stream s = entry.Open())
                 {
                     using StreamWriter writer = new StreamWriter(s, Encoding.ASCII);
-                    writer.Write($"id=fomey.smalipatcher\nname=Smali Patcher\nversion=v{Version}\nversionCode=1\nauthor=fOmeyyy\ndescription=Collection of framework patches.");
+                    writer.Write(
+                        $"id=fomey.smalipatcher\nname=Smali Patcher\nversion=v{Version}\nversionCode=1\nauthor=fOmeyyy\ndescription=Collection of framework patches.");
                 }
             }
             platform.Log("Cleaning up");

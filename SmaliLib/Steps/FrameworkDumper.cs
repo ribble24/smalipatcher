@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
 namespace SmaliLib.Steps
 {
@@ -10,7 +7,7 @@ namespace SmaliLib.Steps
         public static string Dump(IPlatform platform)
         {
             platform.Log("Dumping framework");
-            string[,] strArray = new[,]
+            string[,] strArray =
             {
                 {
                     "/system/build.prop",
