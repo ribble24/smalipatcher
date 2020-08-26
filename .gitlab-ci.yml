@@ -29,10 +29,10 @@ linux:
   stage: deploy
   image: mcr.microsoft.com/dotnet/core/sdk
   script: |
-    mkdir .\build
-    mkdir .\build\cli
-    cd ..\SmaliPatcherMin
-    dotnet publish -o ..\build\cli -c Release
+    mkdir ./build
+    mkdir ./build/cli
+    cd ./SmaliPatcherMin
+    dotnet publish -o ../build/cli -c Release
   artifacts:
     paths:
       - build
