@@ -1,16 +1,21 @@
-# This file is a template, and might need editing before it works on your project.
-# Full project: https://gitlab.com/pages/plain-html
-pages:
-  image: debian:stable
+.shared_windows_runners:
+  tags:
+  - shared-windows
+  - windows
+  - windows-1809
+
+before_script:
+  - dotnet restore
+
+uptool:
+  extends:
+  - .shared_windows_runners
   stage: deploy
-  script:
-    - apt update
-    - apt install zip -y
-    - zip -r source.zip ./*
-    - mkdir public
-    - cp source.zip public/
+  script: |
+    mkdir .\build
+    dotnet publish -o .\build -c Release
   artifacts:
     paths:
-      - public
+      - build
   only:
     - master
