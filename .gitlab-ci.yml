@@ -7,7 +7,7 @@
 before_script:
   - dotnet restore
 
-uptool:
+windows:
   extends:
   - .shared_windows_runners
   stage: deploy
@@ -17,6 +17,20 @@ uptool:
     mkdir .\build\cli
     cd SmaliPatcher
     dotnet publish -o ..\build\gui -c Release
+    cd ..\SmaliPatcherMin
+    dotnet publish -o ..\build\cli -c Release
+  artifacts:
+    paths:
+      - build
+  only:
+    - master
+
+linux:
+  stage: deploy
+  image: mcr.microsoft.com/dotnet/core/sdk
+  script: |
+    mkdir .\build
+    mkdir .\build\cli
     cd ..\SmaliPatcherMin
     dotnet publish -o ..\build\cli -c Release
   artifacts:
