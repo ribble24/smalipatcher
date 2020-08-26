@@ -4,4 +4,5 @@ Supports Linux (maybe android and macOS, although they are not tested and not in
 The functionality should basically be the same as SmaliPatcher 6.9\
 
 ## Download
-You can download the latest CI builds for [Windows](https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=windows) and [Linux](https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=linux) or build it yourself (see [here](https://gitlab.com/JFronny/smalipatcher/-/blob/master/.gitlab-ci.yml))
+You can download the latest CI builds for [Windows](https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=windows) and [Linux](https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=linux) or build it yourself (see [here](https://gitlab.com/JFronny/smalipatcher/-/blob/master/.gitlab-ci.yml))\
+(Also: yes, the linux zip contains .dll files. This is the extension for .NET Core)
