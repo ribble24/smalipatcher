@@ -1,5 +1,5 @@
 # SmaliPatcher.JF
-A "fork" of the decompiled code of [SmaliPatcher](https://forum.xda-developers.com/apps/magisk/module-smali-patcher-0-7-t3680053) by fOmey\
+A "fork" of the decompiled code of [SmaliPatcher by fOmey](https://forum.xda-developers.com/apps/magisk/module-smali-patcher-0-7-t3680053)\
 Supports Linux (maybe android and macOS, although they are not tested and not in CI) devices.\
 The functionality should basically be the same as SmaliPatcher 6.9
 
