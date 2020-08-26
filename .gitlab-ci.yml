@@ -13,7 +13,12 @@ uptool:
   stage: deploy
   script: |
     mkdir .\build
-    dotnet publish -o .\build -c Release
+    mkdir .\build\gui
+    mkdir .\build\cli
+    cd SmaliPatcher
+    dotnet publish -o ..\build\gui -c Release
+    cd ..\SmaliPatcherMin
+    dotnet publish -o ..\build\cli -c Release
   artifacts:
     paths:
       - build
