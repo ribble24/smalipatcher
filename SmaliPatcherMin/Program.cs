@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using CC_Functions.Commandline;
 using SmaliLib;
 using SmaliLib.Patches;
 
@@ -9,12 +10,14 @@ namespace SmaliPatcherMin
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main(string[] a)
         {
-            Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            ArgsParse args = new ArgsParse(a);
+            if (!args.GetBool("no-cd"))
+                Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             IPlatform platform = new Platform();
             SmaliLibMain lib = new SmaliLibMain(platform);
-            if (args.Select(s => s.TrimStart('-', '/')).Contains("help"))
+            if (args.GetBool("help"))
             {
                 Console.WriteLine(@$"SmaliPatcher.JF min ({lib.GetVersion()})
 Usage:  patcher [parameters...]
@@ -23,10 +26,11 @@ Parameters:
     help             -  displays this message
     no-download      -  does not re-download resources. This is mostly useful for testing
     framework:<dir>  -  builds based on the content of the specified directory instead of pulling
-    skip-cleanup     -  prevents removal of temporary files. This is mostly useful for testing");
+    skip-cleanup     -  prevents removal of temporary files. This is mostly useful for testing
+    no-cd            -  do not change the directory to the binary. Useful for packaged installs");
                 return;
             }
-            if (!args.Select(s => s.TrimStart('-', '/')).Contains("no-download"))
+            if (!args.GetBool("no-download"))
                 lib.DownloadDeps();
             lib.CheckResources();
             int status = lib.CheckAdb();
@@ -43,11 +47,7 @@ Parameters:
                         platform.ErrorCritical("Too many devices connected. Use one only!");
                     else
                     {
-                        bool pullFramework = !args.Any(s => s.TrimStart('-', '/').StartsWith("framework:"));
-                        string framework = pullFramework
-                            ? lib.DumpFramework()
-                            : args.First(s => s.TrimStart('-', '/').StartsWith("framework:"))
-                                .TrimStart('-', '\\').Substring(10);
+                        string framework = args["framework"] ?? lib.DumpFramework();
 
                         //Nice menu
                         IPatch[] available = lib.GetPatches();
@@ -104,8 +104,7 @@ Parameters:
                         Console.ResetColor();
                         Console.Clear();
                         lib.PatchFramework(framework, selected);
-                        lib.PackModule(selected, args.Select(s => s.TrimStart('-', '/')).Contains("skip-cleanup"),
-                            pullFramework);
+                        lib.PackModule(selected, args.GetBool("skip-cleanup"), args["framework"] == null);
                     }
                     break;
             }

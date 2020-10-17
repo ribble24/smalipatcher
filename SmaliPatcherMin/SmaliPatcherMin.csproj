@@ -16,4 +16,8 @@
       <ProjectReference Include="..\SmaliLib\SmaliLib.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="CC-Functions.Commandline" Version="1.1.7559.17553" />
+    </ItemGroup>
+
 </Project>

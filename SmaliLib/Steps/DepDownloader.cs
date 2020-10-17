@@ -15,12 +15,13 @@ namespace SmaliLib.Steps
             if (Directory.Exists("bin"))
                 Directory.Delete("bin", true);
             Directory.CreateDirectory("bin");
+            platform.Log("Downloading to " + Path.GetFullPath("bin"));
             if (_apktoolUrl == null || _smaliUrl == null || _baksmaliUrl == null)
                 GetUrls(platform);
 
             File.WriteAllBytes(Path.Combine("bin", "apktool.jar"), platform.Download(_apktoolUrl, "apktool"));
-            File.WriteAllBytes(Path.Combine("bin", "baksmali.jar"), platform.Download(_apktoolUrl, "baksmali"));
-            File.WriteAllBytes(Path.Combine("bin", "smali.jar"), platform.Download(_apktoolUrl, "smali"));
+            File.WriteAllBytes(Path.Combine("bin", "baksmali.jar"), platform.Download(_baksmaliUrl, "baksmali"));
+            File.WriteAllBytes(Path.Combine("bin", "smali.jar"), platform.Download(_smaliUrl, "smali"));
 
             Unpack(platform.Download("https://github.com/fOmey/dexpatcher/raw/master/dexpatcher.zip", "dexpatcher"));
             File.WriteAllBytes(Path.Combine("bin", "dexpatcher.jar"),
