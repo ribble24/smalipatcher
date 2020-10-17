@@ -9,7 +9,7 @@ You can download the latest CI builds for [Windows](https://gitlab.com/JFronny/s
 For android you can follow [this guide](https://gitlab.com/JFronny/smalipatcher/-/blob/master/android/README.md). An easier install method might be created sooner or later
 
 ## What are the projects?
-- "Original" is the decompiled source of SmaliPatcher 6.9 with just enough modifications for it to start. It is here for reference and slightly broken
+- "Original" is the decompiled source of SmaliPatcher 6.9 with just enough modifications for it to start. It is here for reference and not really functional
 - "SmaliLib" is the core functionality of SmaliPatcher repackaged into a .NET Standard library with cross-platform support and some modifications for readability
 - "SmaliPatcher" is a recreation of the original UI code using MaterialSkin.2 and NETFX48 (because MaterialSkin doesn't support Core as of writing)
 - "SmaliPatcherMin" is a custom text-based interface for SmaliLib and is cross-platform (WinForms is only partially supported cross-platform in Mono)

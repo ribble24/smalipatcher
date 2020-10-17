@@ -33,3 +33,18 @@ linux:
       - build
   only:
     - master
+
+android:
+  tags:
+    - docker
+  stage: deploy
+  image: mcr.microsoft.com/dotnet/core/sdk:3.1-buster
+  script: |
+    mkdir ./smp
+    cd ./SmaliPatcherMin
+    dotnet publish -r android.21-arm64 -o ../smp -c Release --self-contained true
+  artifacts:
+    paths:
+      - smp
+  only:
+    - master
