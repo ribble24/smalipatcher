@@ -6,7 +6,7 @@ The functionality should basically be the same as SmaliPatcher 6.9
 ## Download
 You can download the latest CI builds for [Windows](https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=windows) and [Linux](https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=linux) or build it yourself (see [here](https://gitlab.com/JFronny/smalipatcher/-/blob/master/.gitlab-ci.yml))\
 (Also: yes, the linux zip contains .dll files. This is the extension for .NET Core)\
-For android you can follow [this guide](https://gitlab.com/JFronny/smalipatcher/-/blob/master/android/README.md). An easier install method might be created sooner or later
+For android you can follow [these instructions](https://gitlab.com/JFronny/smalipatcher/-/blob/master/android/README.md)
 
 ## What are the projects?
 - "Original" is the decompiled source of SmaliPatcher 6.9 with just enough modifications for it to start. It is here for reference and not really functional

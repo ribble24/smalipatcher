@@ -10,7 +10,7 @@ wget -q https://gitlab.com/JFronny/smalipatcher/-/raw/master/android/setup2.sh?i
 chmod a+x $PREFIX/var/lib/proot-distro/installed-rootfs/ubuntu/root/setup2.sh
 proot-distro login ubuntu -- ./setup2.sh
 
-figlet Creating convenience scripts
+echo Creating convenience scripts
 echo "#!/bin/sh" > smalipatcher-shell
 echo "proot-distro login ubuntu" >> smalipatcher-shell
 chmod a+x smalipatcher-shell

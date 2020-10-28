@@ -14,9 +14,9 @@ cd vdx
 cp bin/vdexExtractor ..
 cd ..
 rm -rf vdx
-figlet Fetching scripts
+echo Fetching scripts
 wget -q https://gitlab.com/JFronny/smalipatcher/-/raw/master/android/cp_framework.sh?inline=false -O cp_framework.sh
 chmod a+x cp_framework.sh
 wget -q https://gitlab.com/JFronny/smalipatcher/-/raw/master/android/smalipatcher.sh?inline=false -O smalipatcher.sh
 chmod a+x smalipatcher.sh
-figlet Env setup complete
+echo Env setup complete

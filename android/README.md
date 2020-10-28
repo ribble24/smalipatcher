@@ -29,7 +29,3 @@ Run the following command in termux:
 - `./smalipatcher.sh`
 
 The module will end up in the proots `/root`. You can copy it to you internal storage with `cp SmaliPatcherModule* /sdcard/`
-
-### This sounds way too complicated
-I do plan to create a script that automates this process (or maybe even a full app that packages SmaliLib)
-but for now this is enough for me to prove functionality
