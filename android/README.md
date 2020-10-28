@@ -1,5 +1,6 @@
 # Automatic (recommended)
-Run the following command in termux:
+Run the following command in [termux](https://termux.com/):
+- `pkg install wget`
 - `wget -q -O - https://gitlab.com/JFronny/smalipatcher/-/raw/master/android/setup.sh?inline=false | bash`
 
 Two script will be created:
