@@ -2,6 +2,13 @@
 Run the following command in termux:
 - `wget -q -O - https://gitlab.com/JFronny/smalipatcher/-/raw/master/android/setup.sh?inline=false | bash`
 
+Two script will be created:
+- `smalipatcher`
+- `smalipatcher-shell`
+
+You will most likely want to run `smalipatcher`. Please make sure you have `ADB over Network` enabled for that script to work.\
+If that setting is unavailable to you, you can use `smalipatcher-shell` to enter the proot, create an ADB connection manually and run `smalipatcher.sh`
+
 
 # Manual
 ### Initial Setup (run in the same termux instance):
