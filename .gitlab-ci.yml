@@ -1,8 +1,6 @@
 windows:
   tags:
-  - shared-windows
   - windows
-  - windows-1809
   stage: deploy
   script: |
     mkdir .\build

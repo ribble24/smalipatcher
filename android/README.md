@@ -1,13 +1,20 @@
+# Automatic (recommended)
+Run the following command in termux:
+- `wget -q -O - https://gitlab.com/JFronny/smalipatcher/-/raw/master/android/setup.sh?inline=false | bash`
+
+
+# Manual
 ### Initial Setup (run in the same termux instance):
-- `apt update`
-- `apt install libssl-dev openjdk-14-jre-headless adb`
 - download [SmaliPatcher for android](https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android)
 - build vdexExtractor (https://github.com/anestisb/vdexExtractor) by cloning it and running build.sh in termux
 - `pkg install proot-distro`
 - `proot-distro install ubuntu`
 - `proot-distro login ubuntu`
 - `unset LD_PRELOAD` <-- this is required if you have a specific other package (termux-exec)
-- extract the SmaliPatcher zips "sbc" directory into the proot dir and `chmod a+x` the main binary
+- `apt update`
+- `apt install libssl-dev openjdk-14-jre-headless adb`
+- `wget -q https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android -O tmp.zip && unzip tmp.zip && rm tmp.zip`
+- `chmod a+x smp/SmaliPatcherMin`
 - copy the vdexExtractor (/root/vdexExtractor) binaries over to proot and `chmod a+x` them
 - download [cp_framework.sh](https://gitlab.com/JFronny/smalipatcher/-/raw/master/android/cp_framework.sh?inline=false) and [smalipatcher.sh](https://gitlab.com/JFronny/smalipatcher/-/raw/master/android/smalipatcher.sh?inline=false) and `chmod a+x` them
 - `./cp_framework.sh`
