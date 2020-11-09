@@ -1,7 +1,7 @@
 #!/bin/sh
 unset LD_PRELOAD
 apt update -y
-apt install -y libssl-dev openjdk-14-jre-headless adb figlet
+apt install -y libssl-dev openjdk-14-jre-headless adb figlet zlib1g-dev
 figlet Fetching patcher
 wget -q https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android -O tmp.zip
 unzip tmp.zip
