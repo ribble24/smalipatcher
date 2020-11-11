@@ -2,7 +2,7 @@
 cd ~
 # Install dependencies
 pkg update -y
-pkg install proot-distro figlet wget git
+pkg install proot-distro figlet wget git make clang
 
 figlet Setting up env
 proot-distro install ubuntu-20.04
