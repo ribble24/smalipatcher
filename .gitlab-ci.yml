@@ -2,6 +2,7 @@ windows:
   tags:
   - windows
   stage: deploy
+  image: mcr.microsoft.com/dotnet/sdk:5.0
   script: |
     mkdir .\build
     mkdir .\build\gui
