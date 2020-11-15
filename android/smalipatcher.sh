@@ -5,5 +5,5 @@ then
     ./cp_framework.sh
 fi
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-./smp/SmaliPatcherMin --no-cd --framework:./adb $@
+~/.dotnet/dotnet smp/SmaliPatcherMin.dll --no-cd --framework:./adb $@
 mv SmaliPatcherModule* /sdcard/
