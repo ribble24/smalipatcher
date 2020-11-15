@@ -5,12 +5,7 @@ mkdir adb
 copyDir() {
   if [[ -e "$1" && -r "$1" ]]
   then
-    if [[ -d "$1" ]]
-    then
-      cp -R "$1" adb/
-    else
-      cp "$1" adb/
-    fi
+    cp -R "$1" adb/
   fi
 }
 

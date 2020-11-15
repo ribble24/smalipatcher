@@ -9,6 +9,9 @@ namespace SmaliLib
     {
         public static int GetDevices(IPlatform platform)
         {
+#if ANDROID_NATIVE
+            return 1;
+#else
             platform.Log("Checking for devices");
             try
             {
@@ -45,6 +48,7 @@ namespace SmaliLib
                 platform.ErrorCritical($"Could not get attached devices ({e.Message})");
                 return 0;
             }
+#endif
         }
 
         public static bool CheckJava(IPlatform platform)

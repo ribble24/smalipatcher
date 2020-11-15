@@ -1,5 +1,5 @@
 #!/bin/sh
-cd ~
+cd ~ || exit
 # Install dependencies
 pkg update -y
 pkg install proot-distro figlet wget git make clang

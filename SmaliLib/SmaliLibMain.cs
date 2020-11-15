@@ -14,6 +14,7 @@ namespace SmaliLib
 
         public bool CheckResources()
         {
+#if !ANDROID_NATIVE
             try
             {
                 BinW.RunCommand(Bin.adb, "version").WaitForExit();
@@ -26,6 +27,7 @@ namespace SmaliLib
                 return false;
             }
             _platform.Log("ADB works");
+#endif
             try
             {
                 BinW.RunCommand(Bin.vdexExtractor, "--help").WaitForExit();

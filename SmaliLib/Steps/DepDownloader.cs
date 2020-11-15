@@ -28,6 +28,7 @@ namespace SmaliLib.Steps
                 platform.Download(
                     "https://github.com/DexPatcher/dexpatcher-tool/releases/download/v1.7.0/dexpatcher-1.7.0.jar",
                     "dex bin"));
+#if !ANDROID_NATIVE
             if (PlatformCheck.IsWindows)
             {
                 byte[] platformTools =
@@ -41,6 +42,7 @@ namespace SmaliLib.Steps
             }
             else
                 platform.Log("Skipping ADB download as this is not windows");
+#endif
             if (PlatformCheck.IsWindows)
                 Unpack(platform.Download(
                     "https://github.com/fOmey/vdexExtractor/raw/master/bin/vdexExtractor_x86_64.zip", "vdex"));

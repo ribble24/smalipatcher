@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 
 namespace SmaliLib.Steps
 {
@@ -36,19 +37,31 @@ namespace SmaliLib.Steps
             if (!Directory.Exists(destination))
                 Directory.CreateDirectory(destination);
             platform.Log($"Pulling {source}");
+#if ANDROID_NATIVE
+            Process.Start("cp", $"-R \"{source}\" \"{destination}\"")?.WaitForExit();
+#else
             BinW.LogIncremental(platform, BinW.RunCommand(Bin.adb, $"pull \"{source}\" \"{destination}\""));
+#endif
         }
 
-        public static void Push(IPlatform platform, string filePath, string destination)
+        public static void Push(IPlatform platform, string source, string destination)
         {
             platform.Log("Pushing files..");
-            BinW.LogIncremental(platform, BinW.RunCommand(Bin.adb, $"push \"{filePath}\" \"{destination}\""));
+#if ANDROID_NATIVE
+            Process.Start("cp", $"-R \"{source}\" \"{destination}\"")?.WaitForExit();
+#else
+            BinW.LogIncremental(platform, BinW.RunCommand(Bin.adb, $"push \"{source}\" \"{destination}\""));
+#endif
         }
 
         public static void Shell(IPlatform platform, string cmd)
         {
             platform.Log("Executing shell command..");
+#if ANDROID_NATIVE
+            Process.Start("sh", $"-c \"{cmd}\"")?.WaitForExit();
+#else
             BinW.LogIncremental(platform, BinW.RunCommand(Bin.adb, $"shell \"{cmd}\""));
+#endif
         }
     }
 }
