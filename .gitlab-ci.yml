@@ -1,21 +1,20 @@
-windows:
-  tags:
-  - windows
-  stage: deploy
-  image: mcr.microsoft.com/dotnet/sdk:5.0
-  script: |
-    mkdir .\build
-    mkdir .\build\gui
-    mkdir .\build\cli
-    cd SmaliPatcher
-    dotnet publish -o ..\build\gui -c Release
-    cd ..\SmaliPatcherMin
-    dotnet publish -o ..\build\cli -c Release
-  artifacts:
-    paths:
-      - build
-  only:
-    - master
+#windows:
+#  tags:
+#  - windows
+#  stage: deploy
+#  script: |
+#    mkdir .\build
+#    mkdir .\build\gui
+#    mkdir .\build\cli
+#    cd SmaliPatcher
+#    dotnet publish -o ..\build\gui -c Release
+#    cd ..\SmaliPatcherMin
+#    dotnet publish -o ..\build\cli -c Release
+#  artifacts:
+#    paths:
+#      - build
+#  only:
+#    - master
 
 linux:
   tags:
