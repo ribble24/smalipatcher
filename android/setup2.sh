@@ -2,7 +2,7 @@
 unset LD_PRELOAD
 apt update -y
 apt install -y libssl-dev openjdk-14-jre-headless figlet zlib1g-dev
-figlet Insalling dotnet
+figlet Installing dotnet
 wget -q https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 chmod a+x dotnet-install.sh
 ./dotnet-install.sh -c 5.0.100 #TODO change if updated
