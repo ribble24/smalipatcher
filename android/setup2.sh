@@ -5,7 +5,7 @@ apt install -y libssl-dev openjdk-14-jre-headless figlet zlib1g-dev
 figlet Installing dotnet
 wget -q https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 chmod a+x dotnet-install.sh
-./dotnet-install.sh -c 5.0.100 #TODO change if updated
+./dotnet-install.sh -c 5.0 #TODO change if updated
 figlet Fetching patcher
 wget -q https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android -O tmp.zip
 unzip tmp.zip
