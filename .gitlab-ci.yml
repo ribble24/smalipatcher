@@ -48,3 +48,20 @@ android:
       - smp
   only:
     - master
+
+android-arm:
+  tags:
+    - docker
+  stage: deploy
+  image: mcr.microsoft.com/dotnet/sdk:5.0-buster-slim
+  script: |
+    mkdir ./smp
+    cd ./SmaliPatcherMin
+    dotnet publish -r android.21-arm -o ../smp -c Release -p:DefineConstants="ANDROID_NATIVE"
+    cd ..
+    cp android/SmaliPatcherMin.runtimeconfig.json smp/
+  artifacts:
+    paths:
+      - smp
+  only:
+    - master
