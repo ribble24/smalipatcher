@@ -7,7 +7,19 @@ wget -q https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 chmod a+x dotnet-install.sh
 ./dotnet-install.sh -c 5.0 #TODO change if updated
 figlet Fetching patcher
-wget -q https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android -O tmp.zip
+if [ "$(uname -m)" == "aarch64" ]
+then
+    wget -q https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android -O tmp.zip
+elif [ "$(uname -m)" == "arm64" ]
+then
+    wget -q https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android -O tmp.zip
+elif [ "$(uname -m)" == "armv7l" ]
+then
+    wget -q https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android-arm -O tmp.zip
+elif [ "$(uname -m)" == "arm" ]
+then
+    wget -q https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android-arm -O tmp.zip
+fi
 unzip tmp.zip
 rm tmp.zip
 figlet Building vdexExtractor
