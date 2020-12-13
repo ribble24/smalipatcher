@@ -45,15 +45,12 @@ namespace SmaliLib.Patches
                     else if (str2.Substring(startIndex1, num - startIndex1).Contains("PackageSetting"))
                         DexPatcherTarget = Path.Combine("bin", "sigspoof_7.0-9.0.dex");
                 }
+                path = Path.Combine("com", "android", "server", "pm", "GeneratePackageInfoHook.smali");
+                if (!File.Exists(Path.Combine(FrameworkPatcher.GetPath(path), path)))
+                    DexPatcherCoreRequired = true;
             }
-            else if (!File.Exists(Path.Combine(baseStr, path)))
-            {
+            else
                 platform.Warning("Signature spoof class not found");
-                return baseStr;
-            }
-            path = Path.Combine("com", "android", "server", "pm", "GeneratePackageInfoHook.smali");
-            if (!File.Exists(Path.Combine(FrameworkPatcher.GetPath(path), path)))
-                DexPatcherCoreRequired = true;
             return baseStr;
         }
 
