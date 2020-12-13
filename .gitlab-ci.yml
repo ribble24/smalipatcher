@@ -57,7 +57,7 @@ android-arm:
   script: |
     mkdir ./smp
     cd ./SmaliPatcherMin
-    dotnet publish -r android.21-arm -o ../smp -c Release -p:DefineConstants="ANDROID_NATIVE"
+    dotnet publish -r android.21-arm -o ../smp -c Release -p:DefineConstants="ANDROID_NATIVE" -p:DefineConstants="ARM32"
     cd ..
     cp android/SmaliPatcherMin.runtimeconfig.json smp/
   artifacts:

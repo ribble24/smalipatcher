@@ -42,16 +42,22 @@ namespace SmaliLib.Steps
             }
             else
                 platform.Log("Skipping ADB download as this is not windows");
-#endif
             if (PlatformCheck.IsWindows)
                 Unpack(platform.Download(
                     "https://github.com/fOmey/vdexExtractor/raw/master/bin/vdexExtractor_x86_64.zip", "vdex"));
             else
                 platform.Log(
                     "Skipping vdexExtractor download as this is not windows, you may need to build it yourself: https://github.com/anestisb/vdexExtractor");
+#endif
+#if ARM32
+            Unpack(platform.Download(
+                "https://github.com/fOmey/compact_dex_converter/raw/master/compact_dex_converter_android_armeabi-v7a.zip",
+                "cdex"));
+#else
             Unpack(platform.Download(
                 "https://github.com/fOmey/compact_dex_converter/raw/master/compact_dex_converter_android_arm64-v8a.zip",
                 "cdex"));
+#endif
             File.WriteAllBytes(Path.Combine("bin", "module_installer.sh"),
                 platform.Download(
                     "https://raw.githubusercontent.com/topjohnwu/Magisk/master/scripts/module_installer.sh",
