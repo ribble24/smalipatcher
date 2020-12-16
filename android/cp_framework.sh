@@ -5,7 +5,7 @@ mkdir adb
 copyDir() {
   if [[ -e "$1" && -r "$1" ]]
   then
-    cp --no-preserve=mode,ownership -R "$1" adb/
+    cp --no-preserve=all -R "$1" adb/
   fi
 }
 
