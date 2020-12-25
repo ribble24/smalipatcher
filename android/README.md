@@ -7,9 +7,6 @@ Two script will be created:
 - `smalipatcher`
 - `smalipatcher-shell`
 
-You will most likely want to run `smalipatcher`. Please make sure you have `ADB over Network` enabled for that script to work.\
-If that setting is unavailable to you, you can use `smalipatcher-shell` to enter the proot, create an ADB connection manually and run `smalipatcher.sh`
-
 
 # Dev automatic
 This works the same as the stable automatic install, except for the fact that you will need to run `wget -q -O - https://gitlab.com/JFronny/smalipatcher/-/raw/dev/android/dev/setup.sh?inline=false | bash`
