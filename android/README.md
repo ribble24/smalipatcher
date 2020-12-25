@@ -7,9 +7,9 @@ Two script will be created:
 - `smalipatcher`
 - `smalipatcher-shell`
 
-
 # Dev automatic
 This works the same as the stable automatic install, except for the fact that you will need to run `wget -q -O - https://gitlab.com/JFronny/smalipatcher/-/raw/dev/android/dev/setup.sh?inline=false | bash`
+
 # Manual
 ### Initial Setup (run in the same termux instance):
 - download [SmaliPatcher for android](https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android)
