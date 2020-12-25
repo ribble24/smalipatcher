@@ -15,6 +15,7 @@
 #      - build
 #  only:
 #    - master
+#    - dev
 
 linux:
   tags:
@@ -31,6 +32,7 @@ linux:
       - build
   only:
     - master
+    - dev
 
 android:
   tags:
@@ -48,6 +50,7 @@ android:
       - smp
   only:
     - master
+    - dev
 
 android-arm:
   tags:
@@ -65,3 +68,4 @@ android-arm:
       - smp
   only:
     - master
+    - dev
