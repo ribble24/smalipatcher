@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net48</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <Version>0.0.6.9</Version>
+    <Version>0.0.7.0</Version>
     <AssemblyTitle>SmaliPatcher</AssemblyTitle>
     <Company>fOmey</Company>
     <Title>SmaliPatcher</Title>
@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Costura.Fody" Version="4.1.0" />
-    <PackageReference Include="MaterialSkin.2" Version="2.1.2" />
+    <PackageReference Include="MaterialSkin.2" Version="2.1.3" />
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
 

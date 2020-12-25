@@ -10,6 +10,7 @@ namespace SmaliPatcher
 {
     public class Patch
     {
+        private readonly List<string> _processedFiles = new List<string>();
         private Adb _adb;
         private bool _dexPatcherCoreRequired;
         private string _dexPatcherTarget;
@@ -17,7 +18,6 @@ namespace SmaliPatcher
         private bool _hasBeenDeodexed;
         private MainForm _mainForm;
         public List<Patches> Patches;
-        private readonly List<string> _processedFiles = new List<string>();
 
         public void Init(object sender)
         {
@@ -117,7 +117,8 @@ namespace SmaliPatcher
                                     api);
                             else if (!flag && files2.Length == 0 && files3.Length == 0 && files4.Length == 0)
                             {
-                                _mainForm.DebugUpdate("\n!!! ERROR: Incomplete framework dump, required files missing.");
+                                _mainForm.DebugUpdate(
+                                    "\n!!! ERROR: Incomplete framework dump, required files missing.");
                                 _mainForm.DebugUpdate(
                                     "\n\nYou can try running the patcher while booted into recovery mode with /system mounted, it may fix this.");
                                 _mainForm.StatusUpdate("ERROR..");
@@ -509,6 +510,39 @@ namespace SmaliPatcher
                 }
             }
             int result;
+            if (GetPatchStatus("Mock providers") && GetPatchTargetFile("Mock providers") == withoutExtension + ".jar")
+            {
+                str1 = GetPath("com\\android\\server\\LocationManagerService.smali");
+                if (File.Exists(str1 + "com\\android\\server\\LocationManagerService.smali"))
+                {
+                    string str2 = File.ReadAllText(str1 + "com\\android\\server\\LocationManagerService.smali");
+                    using (StreamWriter streamWriter =
+                        new StreamWriter(str1 + "com\\android\\server\\LocationManagerService.smali.new"))
+                    {
+                        if (str2.Contains(".method private canCallerAccessMockLocation"))
+                        {
+                            int num = str2.LastIndexOf(".method private canCallerAccessMockLocation(");
+                            while (str2.Substring(num, 7) != ".locals" && str2.Substring(num, 10) != ".registers")
+                                ++num;
+                            if (str2.Substring(num, 7) == ".locals")
+                                num += 8;
+                            if (str2.Substring(num, 10) == ".registers")
+                                num += 11;
+                            while (int.TryParse(str2.Substring(num, 1), out result))
+                                ++num;
+                            int startIndex = num;
+                            while (str2.Substring(startIndex, 11) != ".end method")
+                                ++startIndex;
+                            str2 = str2.Substring(0, num) + "\n\n    const/4 v0, 0x1\n\n    return v0\n\n" +
+                                   str2.Substring(startIndex);
+                            _mainForm.DebugUpdate("\n==> Patched mock providers function");
+                        }
+                        streamWriter.Write(str2);
+                    }
+                    File.Replace(str1 + "com\\android\\server\\LocationManagerService.smali.new",
+                        str1 + "com\\android\\server\\LocationManagerService.smali", null);
+                }
+            }
             if (GetPatchStatus("Secure flag") && GetPatchTargetFile("Secure flag") == withoutExtension + ".jar")
             {
                 string path1 = GetPath("com\\android\\server\\wm\\WindowManagerService.smali");

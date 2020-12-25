@@ -56,8 +56,14 @@ namespace SmaliLib
 
         public IPatch[] GetPatches() => new IPatch[]
         {
-            new HighVolumeWarning(), new MockLocations(), new RecoveryReboot(), new SamsungKnox(), new SecureFlag(),
-            new SignatureSpoofing(), new SignatureVerification()
+            new MockLocations(),
+            new MockProviders(),
+            new SecureFlag(),
+            new SignatureVerification(),
+            new SignatureSpoofing(),
+            new RecoveryReboot(),
+            new SamsungKnox(),
+            new HighVolumeWarning(),
         };
 
         public void PackModule(IPatch[] patches, bool skipCleanup, bool removeFramework = true) =>

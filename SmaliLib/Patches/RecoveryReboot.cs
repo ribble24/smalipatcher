@@ -9,6 +9,7 @@ namespace SmaliLib.Patches
         public override string Title { get; } = "Recovery reboot";
         public override string Description { get; } = "Reboot directly back into recovery from powermenu";
         public override string TargetFile { get; } = "services.jar";
+        public override bool IsDefault { get; } = false;
 
         public override void JarCompileStep(IPlatform platform)
         {

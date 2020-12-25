@@ -12,8 +12,8 @@ namespace SmaliPatcher
         private string _lastOutput = "";
         private MainForm _mainForm;
         private Patch _patch;
-        public List<Patches> Patches;
         private List<string> _processedFiles = new List<string>();
+        public List<Patches> Patches;
 
         public void Init(object sender)
         {

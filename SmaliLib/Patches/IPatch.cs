@@ -10,7 +10,8 @@ namespace SmaliLib.Patches
         public abstract string Title { get; }
         public abstract string Description { get; }
         public abstract string TargetFile { get; }
-        public bool PostFsData { get; protected set; } = false;
+        public bool PostFsData { get; protected set; }
+        public abstract bool IsDefault { get; }
         public abstract void JarCompileStep(IPlatform platform);
         public abstract string PatchFileStep(IPlatform platform, string baseStr);
         public abstract void PackModuleStep(ZipArchive archive);

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Net;
 
 namespace SmaliPatcher
@@ -322,7 +320,8 @@ namespace SmaliPatcher
                 Unpack("tmp\\vdexExtractor.zip");
                 flag = true;
             }
-            if (File.Exists("tmp\\compact_dex_converter.zip") && new FileInfo("tmp\\compact_dex_converter.zip").Length > 0L)
+            if (File.Exists("tmp\\compact_dex_converter.zip") &&
+                new FileInfo("tmp\\compact_dex_converter.zip").Length > 0L)
             {
                 _mainForm.StatusUpdate("Unpacking cdexConverter..");
                 Unpack("tmp\\compact_dex_converter.zip");
@@ -330,7 +329,7 @@ namespace SmaliPatcher
             }
             if (flag)
             {
-                //Directory.Delete("tmp", true);
+                Directory.Delete("tmp", true);
                 _mainForm.DebugUpdate("\n==> Unpacked binarys");
             }
             _mainForm.StatusUpdate("Idle..");
@@ -340,10 +339,8 @@ namespace SmaliPatcher
         {
             using ZipArchive file = ZipFile.OpenRead(zip);
             foreach (ZipArchiveEntry entry in file.Entries)
-            {
                 if (File.Exists("bin\\" + entry))
                     File.Delete("bin\\" + entry);
-            }
             file.ExtractToDirectory("bin");
         }
     }

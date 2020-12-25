@@ -51,8 +51,7 @@ Parameters:
 
                         //Nice menu
                         IPatch[] available = lib.GetPatches();
-                        IPatch[] selected =
-                            {available.First(s => s is HighVolumeWarning), available.First(s => s is MockLocations)};
+                        IPatch[] selected = available.Where(s => s.IsDefault).ToArray();
                         bool selecting = true;
                         int currentI = 0;
                         while (selecting)

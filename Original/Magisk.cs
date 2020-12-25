@@ -15,13 +15,13 @@ namespace SmaliPatcher
         private readonly string _installSh2 =
             "\"\r\n\r\nprint_modname() {\r\n   ui_print \"*******************************\"\r\n   ui_print \"          Smali Patcher        \"\r\n   ui_print \"           fOmey @ XDA         \"\r\n   ui_print \"*******************************\"\r\n}\r\n\r\non_install() {\r\n   ui_print \"- Extracting module files\"\r\n   unzip -o \"$ZIPFILE\" 'system/*' -d $MODPATH >&2\r\n}\r\n\r\nset_permissions() {\r\n  set_perm_recursive $MODPATH 0 0 0755 0644\r\n}";
 
-        private MainForm _mainForm;
-
         private readonly string _moduleProp = "id=fomey.smalipatcher\r\nname=Smali Patcher\r\nversion=v" +
-                                             Application.ProductVersion +
-                                             "\r\nversionCode=1\r\nauthor=fOmeyyy\r\ndescription=Collection of framework patches.";
+                                              Application.ProductVersion +
+                                              "\r\nversionCode=1\r\nauthor=fOmeyyy\r\ndescription=Collection of framework patches.";
 
         private readonly string _postFsData = "MODDIR=${0%/*}\r\nresetprop --delete ro.config.iccc_version";
+
+        private MainForm _mainForm;
 
         public void Init(object sender)
         {
@@ -83,7 +83,7 @@ namespace SmaliPatcher
                     File.WriteAllText("tmp\\magisk\\common\\post-fs-data.sh", _postFsData.Replace("\r\n", "\n"),
                         Encoding.ASCII);
                 }
-                
+
                 File.WriteAllText("tmp\\magisk\\install.sh",
                     _installSh0.Replace("\r\n", "\n") + str2.Replace("\r\n", "\n") + _installSh1.Replace("\r\n", "\n") +
                     str1.Replace("\r\n", "\n") + _installSh2.Replace("\r\n", "\n"), Encoding.ASCII);

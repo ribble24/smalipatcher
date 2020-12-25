@@ -10,6 +10,7 @@ namespace SmaliLib.Patches
         public override string Title { get; } = "Signature spoofing";
         public override string Description { get; } = "Allow app signature spoofing permission";
         public override string TargetFile { get; } = "services.jar";
+        public override bool IsDefault { get; } = false;
 
         public override void JarCompileStep(IPlatform platform)
         {

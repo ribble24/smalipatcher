@@ -9,6 +9,7 @@ namespace SmaliLib.Patches
         public override string Title { get; } = "Mock locations";
         public override string Description { get; } = "Treat mock locations as genuine location updates";
         public override string TargetFile { get; } = "services.jar";
+        public override bool IsDefault { get; } = true;
 
         public override void JarCompileStep(IPlatform platform)
         {

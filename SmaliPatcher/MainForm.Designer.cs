@@ -48,11 +48,10 @@ namespace SmaliPatcher
             // 
             // patchDivider
             // 
-            this.patchDivider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.patchDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.patchDivider.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.patchDivider.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (30)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))));
             this.patchDivider.Depth = 0;
-            this.patchDivider.Location = new System.Drawing.Point(0, 263);
+            this.patchDivider.Location = new System.Drawing.Point(0, 247);
             this.patchDivider.MouseState = MaterialSkin.MouseState.HOVER;
             this.patchDivider.Name = "patchDivider";
             this.patchDivider.Size = new System.Drawing.Size(454, 38);
@@ -60,9 +59,8 @@ namespace SmaliPatcher
             // 
             // frameworkDivider
             // 
-            this.frameworkDivider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.frameworkDivider.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.frameworkDivider.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.frameworkDivider.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (30)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))));
             this.frameworkDivider.Depth = 0;
             this.frameworkDivider.Location = new System.Drawing.Point(0, 425);
             this.frameworkDivider.MouseState = MaterialSkin.MouseState.HOVER;
@@ -72,26 +70,24 @@ namespace SmaliPatcher
             // 
             // logBox
             // 
-            this.logBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.logBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.logBox.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.logBox.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (255)))), ((int) (((byte) (255)))));
             this.logBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.logBox.Depth = 0;
             this.logBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.logBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.logBox.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (222)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))));
             this.logBox.Hint = "";
             this.logBox.Location = new System.Drawing.Point(12, 75);
             this.logBox.MouseState = MaterialSkin.MouseState.HOVER;
             this.logBox.Name = "logBox";
-            this.logBox.Size = new System.Drawing.Size(430, 182);
+            this.logBox.Size = new System.Drawing.Size(430, 166);
             this.logBox.TabIndex = 3;
             this.logBox.Text = "fOmey @ XDA\nPatcher version: ";
             // 
             // bottomBar
             // 
-            this.bottomBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.bottomBar.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.bottomBar.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (30)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))));
             this.bottomBar.Depth = 0;
             this.bottomBar.Location = new System.Drawing.Point(0, 566);
             this.bottomBar.MouseState = MaterialSkin.MouseState.HOVER;
@@ -101,27 +97,25 @@ namespace SmaliPatcher
             // 
             // optionsList
             // 
-            this.optionsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.optionsList.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.optionsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.optionsList.CheckBoxes = true;
             this.optionsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.optionsList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.optionsList.HideSelection = false;
-            this.optionsList.Location = new System.Drawing.Point(12, 307);
+            this.optionsList.Location = new System.Drawing.Point(12, 291);
             this.optionsList.Name = "optionsList";
-            this.optionsList.Size = new System.Drawing.Size(430, 112);
+            this.optionsList.Size = new System.Drawing.Size(430, 128);
             this.optionsList.TabIndex = 16;
             this.optionsList.UseCompatibleStateImageBehavior = false;
             this.optionsList.View = System.Windows.Forms.View.Details;
             // 
             // statusLabel
             // 
-            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.statusLabel.AutoSize = true;
-            this.statusLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(214)))), ((int)(((byte)(214)))));
-            this.statusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.statusLabel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (214)))), ((int) (((byte) (214)))), ((int) (((byte) (214)))));
+            this.statusLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (64)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
             this.statusLabel.Location = new System.Drawing.Point(3, 571);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(52, 13);
@@ -131,8 +125,8 @@ namespace SmaliPatcher
             // authorLabel
             // 
             this.authorLabel.AutoSize = true;
-            this.authorLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
-            this.authorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.authorLabel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (63)))), ((int) (((byte) (81)))), ((int) (((byte) (181)))));
+            this.authorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.authorLabel.ForeColor = System.Drawing.Color.White;
             this.authorLabel.Location = new System.Drawing.Point(303, 34);
             this.authorLabel.Name = "authorLabel";
@@ -144,10 +138,10 @@ namespace SmaliPatcher
             // patchOptionsLabel
             // 
             this.patchOptionsLabel.AutoSize = true;
-            this.patchOptionsLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(214)))), ((int)(((byte)(214)))));
-            this.patchOptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.patchOptionsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.patchOptionsLabel.Location = new System.Drawing.Point(12, 272);
+            this.patchOptionsLabel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (214)))), ((int) (((byte) (214)))), ((int) (((byte) (214)))));
+            this.patchOptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.patchOptionsLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (64)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
+            this.patchOptionsLabel.Location = new System.Drawing.Point(12, 256);
             this.patchOptionsLabel.Name = "patchOptionsLabel";
             this.patchOptionsLabel.Size = new System.Drawing.Size(109, 20);
             this.patchOptionsLabel.TabIndex = 18;
@@ -155,11 +149,11 @@ namespace SmaliPatcher
             // 
             // customSourceLabel
             // 
-            this.customSourceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.customSourceLabel.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.customSourceLabel.AutoSize = true;
-            this.customSourceLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(214)))), ((int)(((byte)(214)))));
-            this.customSourceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customSourceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.customSourceLabel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (214)))), ((int) (((byte) (214)))), ((int) (((byte) (214)))));
+            this.customSourceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.customSourceLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (64)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
             this.customSourceLabel.Location = new System.Drawing.Point(12, 434);
             this.customSourceLabel.Name = "customSourceLabel";
             this.customSourceLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -169,11 +163,10 @@ namespace SmaliPatcher
             // 
             // frameworkBox
             // 
-            this.frameworkBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.frameworkBox.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.frameworkBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.frameworkBox.Depth = 0;
-            this.frameworkBox.Font = new System.Drawing.Font("Roboto", 12F);
+            this.frameworkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.frameworkBox.Location = new System.Drawing.Point(12, 472);
             this.frameworkBox.MaxLength = 50;
             this.frameworkBox.MouseState = MaterialSkin.MouseState.OUT;
@@ -186,7 +179,7 @@ namespace SmaliPatcher
             // 
             // frameworkBrowseButton
             // 
-            this.frameworkBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.frameworkBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.frameworkBrowseButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.frameworkBrowseButton.Depth = 0;
             this.frameworkBrowseButton.DrawShadows = true;
@@ -226,8 +219,8 @@ namespace SmaliPatcher
             // 
             // paypalPanel
             // 
-            this.paypalPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
-            this.paypalPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("paypalPanel.BackgroundImage")));
+            this.paypalPanel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (63)))), ((int) (((byte) (81)))), ((int) (((byte) (181)))));
+            this.paypalPanel.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("paypalPanel.BackgroundImage")));
             this.paypalPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.paypalPanel.Location = new System.Drawing.Point(414, 24);
             this.paypalPanel.Name = "paypalPanel";
@@ -253,12 +246,11 @@ namespace SmaliPatcher
             this.Controls.Add(this.logBox);
             this.Controls.Add(this.frameworkDivider);
             this.Controls.Add(this.patchDivider);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Smali Patcher";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private System.Windows.Forms.Panel paypalPanel;

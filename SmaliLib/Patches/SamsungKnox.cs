@@ -11,6 +11,7 @@ namespace SmaliLib.Patches
         public override string Title { get; } = "Samsung Knox";
         public override string Description { get; } = "Bypass Samsung knox-trip protection (secure folder)";
         public override string TargetFile { get; } = "services.jar";
+        public override bool IsDefault { get; } = false;
 
         public override void JarCompileStep(IPlatform platform)
         {

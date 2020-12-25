@@ -32,7 +32,7 @@ namespace SmaliPatcher
             optionsList.Columns.Add("", -2);
             foreach (IPatch patch in lib.GetPatches())
             {
-                patches.Add(patch, patch is MockLocations || patch is HighVolumeWarning);
+                patches.Add(patch, patch.IsDefault);
                 optionsList.Items.Add("").SubItems.AddRange(new string[2]
                 {
                     patch.Title,

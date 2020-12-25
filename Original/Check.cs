@@ -42,7 +42,7 @@ namespace SmaliPatcher
                     if (input.Contains("version \""))
                     {
                         _mainForm.DebugUpdate("\n==> Detected java: " +
-                                             new Regex("\".*\"").Match(input).Value.Trim().Trim('"'));
+                                              new Regex("\".*\"").Match(input).Value.Trim().Trim('"'));
                         return true;
                     }
                 _mainForm.DebugUpdate("\n!!! ERROR: Java not detected.");
