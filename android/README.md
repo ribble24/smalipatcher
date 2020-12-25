@@ -1,4 +1,4 @@
-# Automatic (recommended)
+# Stable automatic (recommended)
 Run the following command in [termux](https://termux.com/):
 - `pkg install -y wget`
 - `wget -q -O - https://gitlab.com/JFronny/smalipatcher/-/raw/master/android/setup.sh?inline=false | bash`
@@ -11,6 +11,8 @@ You will most likely want to run `smalipatcher`. Please make sure you have `ADB 
 If that setting is unavailable to you, you can use `smalipatcher-shell` to enter the proot, create an ADB connection manually and run `smalipatcher.sh`
 
 
+# Dev automatic
+This works the same as the stable automatic install, except for the fact that you will need to run `wget -q -O - https://gitlab.com/JFronny/smalipatcher/-/raw/dev/android/dev/setup.sh?inline=false | bash`
 # Manual
 ### Initial Setup (run in the same termux instance):
 - download [SmaliPatcher for android](https://gitlab.com/JFronny/smalipatcher/-/jobs/artifacts/master/download?job=android)
