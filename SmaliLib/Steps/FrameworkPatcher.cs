@@ -328,9 +328,14 @@ namespace SmaliLib.Steps
 
         private void CdexToDex(IPlatform platform, string cdexAddress)
         {
-            if (Directory.Exists("bin") && File.Exists(Path.Combine("bin", "compact_dex_converter")))
+            string cdc = Path.Combine("bin", "compact_dex_converter");
+            if (Directory.Exists("bin") && File.Exists(cdc))
             {
-                FrameworkDumper.Push(platform, Path.Combine("bin", "compact_dex_converter"), "/data/local/tmp/");
+#if ANDROID_NATIVE
+                FrameworkDumper.Shell(platform, "chmod 777 " + cdc);
+                FrameworkDumper.Shell(platform, cdc + " " + cdexAddress);
+#else
+                FrameworkDumper.Push(platform, cdc, "/data/local/tmp/");
                 FrameworkDumper.Shell(platform, "chmod 777 /data/local/tmp/compact_dex_converter");
                 FrameworkDumper.Push(platform, cdexAddress, "/data/local/tmp/");
                 FrameworkDumper.Shell(platform,
@@ -339,6 +344,7 @@ namespace SmaliLib.Steps
                 FrameworkDumper.Shell(platform, "rm -f /data/local/tmp/compact_dex_converter");
                 FrameworkDumper.Shell(platform, "rm -f /data/local/tmp/" + Path.GetFileName(cdexAddress));
                 FrameworkDumper.Shell(platform, "rm -f /data/local/tmp/" + Path.GetFileName(cdexAddress) + ".new");
+#endif
                 if (File.Exists(cdexAddress))
                     File.Delete(cdexAddress);
                 if (File.Exists(Path.Combine("bin", Path.GetFileNameWithoutExtension(cdexAddress) + ".dex")))

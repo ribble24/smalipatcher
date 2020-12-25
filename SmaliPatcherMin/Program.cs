@@ -12,11 +12,11 @@ namespace SmaliPatcherMin
     {
         private static void Main(string[] a)
         {
-            ArgsParse args = new ArgsParse(a);
+            ArgsParse args = new(a);
             if (!args.GetBool("no-cd"))
                 Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             IPlatform platform = new Platform();
-            SmaliLibMain lib = new SmaliLibMain(platform);
+            SmaliLibMain lib = new(platform);
             if (args.GetBool("help"))
             {
                 Console.WriteLine(@$"SmaliPatcher.JF min ({lib.GetVersion()})
