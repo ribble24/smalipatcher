@@ -17,13 +17,15 @@ namespace SmaliPatcherMin
                 Environment.CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             IPlatform platform = new Platform();
             SmaliLibMain lib = new(platform);
-            if (args.GetBool("help"))
+            if (args.GetBool("print-version") || args.GetBool("help"))
             {
-                Console.WriteLine(@$"SmaliPatcher.JF min ({lib.GetVersion()})
-Usage:  patcher [parameters...]
+                Console.WriteLine($"SmaliPatcher.JF min ({lib.GetVersion()})");
+                if (args.GetBool("help"))
+                    Console.WriteLine(@"Usage:  patcher [parameters...]
 
 Parameters:
     help             -  displays this message
+    print-version    -  prints the patcher version
     no-download      -  does not re-download resources. This is mostly useful for testing
     framework:<dir>  -  builds based on the content of the specified directory instead of pulling
     skip-cleanup     -  prevents removal of temporary files. This is mostly useful for testing
