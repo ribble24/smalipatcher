@@ -58,6 +58,7 @@ namespace SmaliLib
         {
             new MockLocations(),
             new MockProviders(),
+            new GNSSUpdates(),
             new SecureFlag(),
             new SignatureVerification(),
             new SignatureSpoofing(),

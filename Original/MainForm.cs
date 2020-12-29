@@ -17,19 +17,19 @@ namespace SmaliPatcher
     public class MainForm : MaterialForm
     {
         private readonly Adb _adb;
-        private readonly Check _check;
-        private readonly Download _download;
-        private readonly Patch _patch;
         private MaterialFlatButton _browseButton;
         private MaterialSingleLineTextField _browseTextbox;
+        private readonly Check _check;
         private MaterialDivider _debugDivider;
         private RichTextBox _debugInfo;
         private Label _devLabel;
+        private readonly Download _download;
         private Label _infoLabel;
         private Thread _infoThread;
         private Label _label1;
         private MaterialDivider _optionsDivider;
         private ListView _optionsList;
+        private readonly Patch _patch;
         private MaterialRaisedButton _patchButton;
         private PictureBox _paypalButton;
         private MaterialDivider _servicejarDivider;
@@ -59,6 +59,7 @@ namespace SmaliPatcher
                 "services.jar"));
             Patches.Add(new Patches(true, "Mock providers",
                 "Allow creation of mock providers without mock permissions.", "services.jar"));
+            Patches.Add(new Patches(false, "GNSS updates", "Disable all GNSS (GPS) location updates.", "services.jar"));
             Patches.Add(new Patches(false, "Secure flag", "Allow screenshots/screensharing in secure apps.",
                 "services.jar"));
             Patches.Add(new Patches(false, "Signature verification", "Disable apk signature verification.",
@@ -323,7 +324,7 @@ namespace SmaliPatcher
             _debugInfo.Text = "";
             _servicejarDivider.BackColor = Color.FromArgb(55, 71, 79);
             _servicejarDivider.Depth = 0;
-            _servicejarDivider.Location = new Point(0, 395);
+            _servicejarDivider.Location = new Point(0, 411);
             _servicejarDivider.MouseState = MouseState.OUT;
             _servicejarDivider.Name = "_servicejarDivider";
             _servicejarDivider.Size = new Size(419, 40);
@@ -333,7 +334,7 @@ namespace SmaliPatcher
             _browseButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             _browseButton.Depth = 0;
             _browseButton.Image = null;
-            _browseButton.Location = new Point(326, 444);
+            _browseButton.Location = new Point(326, 460);
             _browseButton.Margin = new Padding(4, 6, 4, 6);
             _browseButton.MouseState = MouseState.OUT;
             _browseButton.Name = "_browseButton";
@@ -347,7 +348,7 @@ namespace SmaliPatcher
             _patchButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             _patchButton.Depth = 0;
             _patchButton.Image = null;
-            _patchButton.Location = new Point(162, 489);
+            _patchButton.Location = new Point(162, 505);
             _patchButton.MouseState = MouseState.OUT;
             _patchButton.Name = "_patchButton";
             _patchButton.Primary = true;
@@ -358,7 +359,7 @@ namespace SmaliPatcher
             _patchButton.Click += patchButton_Click;
             _browseTextbox.Depth = 0;
             _browseTextbox.Hint = "";
-            _browseTextbox.Location = new Point(9, 450);
+            _browseTextbox.Location = new Point(9, 466);
             _browseTextbox.MouseState = MouseState.OUT;
             _browseTextbox.Name = "_browseTextbox";
             _browseTextbox.SelectedText = "";
@@ -382,14 +383,14 @@ namespace SmaliPatcher
             _servicejarLabel.BackColor = Color.FromArgb(55, 71, 79);
             _servicejarLabel.Font = new Font("Microsoft Sans Serif", 11f);
             _servicejarLabel.ForeColor = Color.White;
-            _servicejarLabel.Location = new Point(12, 406);
+            _servicejarLabel.Location = new Point(12, 422);
             _servicejarLabel.Name = "_servicejarLabel";
             _servicejarLabel.Size = new Size(135, 18);
             _servicejarLabel.TabIndex = 11;
             _servicejarLabel.Text = "/system/framework";
             _statusDivider.BackColor = Color.FromArgb(38, 50, 56);
             _statusDivider.Depth = 0;
-            _statusDivider.Location = new Point(0, 538);
+            _statusDivider.Location = new Point(0, 554);
             _statusDivider.MouseState = MouseState.OUT;
             _statusDivider.Name = "_statusDivider";
             _statusDivider.Size = new Size(419, 20);
@@ -399,7 +400,7 @@ namespace SmaliPatcher
             _statusText.BackColor = Color.FromArgb(38, 50, 56);
             _statusText.Font = new Font("Microsoft Sans Serif", 8f);
             _statusText.ForeColor = Color.White;
-            _statusText.Location = new Point(5, 541);
+            _statusText.Location = new Point(5, 557);
             _statusText.Name = "_statusText";
             _statusText.Size = new Size(30, 13);
             _statusText.TabIndex = 13;
@@ -426,7 +427,7 @@ namespace SmaliPatcher
             _optionsList.HeaderStyle = ColumnHeaderStyle.None;
             _optionsList.Location = new Point(8, 263);
             _optionsList.Name = "_optionsList";
-            _optionsList.Size = new Size(402, 128);
+            _optionsList.Size = new Size(402, 144);
             _optionsList.TabIndex = 16;
             _optionsList.UseCompatibleStateImageBehavior = false;
             _optionsList.View = View.Details;
@@ -452,7 +453,7 @@ namespace SmaliPatcher
             _infoLabel.Visible = false;
             AutoScaleDimensions = new SizeF(6f, 13f);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(419, 558);
+            ClientSize = new Size(419, 574);
             Controls.Add(_infoLabel);
             Controls.Add(_paypalButton);
             Controls.Add(_optionsList);

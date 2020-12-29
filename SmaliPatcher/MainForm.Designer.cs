@@ -51,7 +51,7 @@ namespace SmaliPatcher
             this.patchDivider.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.patchDivider.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (30)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))), ((int) (((byte) (0)))));
             this.patchDivider.Depth = 0;
-            this.patchDivider.Location = new System.Drawing.Point(0, 247);
+            this.patchDivider.Location = new System.Drawing.Point(0, 231);
             this.patchDivider.MouseState = MaterialSkin.MouseState.HOVER;
             this.patchDivider.Name = "patchDivider";
             this.patchDivider.Size = new System.Drawing.Size(454, 38);
@@ -80,7 +80,7 @@ namespace SmaliPatcher
             this.logBox.Location = new System.Drawing.Point(12, 75);
             this.logBox.MouseState = MaterialSkin.MouseState.HOVER;
             this.logBox.Name = "logBox";
-            this.logBox.Size = new System.Drawing.Size(430, 166);
+            this.logBox.Size = new System.Drawing.Size(430, 150);
             this.logBox.TabIndex = 3;
             this.logBox.Text = "fOmey @ XDA\nPatcher version: ";
             // 
@@ -103,9 +103,9 @@ namespace SmaliPatcher
             this.optionsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.optionsList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.optionsList.HideSelection = false;
-            this.optionsList.Location = new System.Drawing.Point(12, 291);
+            this.optionsList.Location = new System.Drawing.Point(12, 275);
             this.optionsList.Name = "optionsList";
-            this.optionsList.Size = new System.Drawing.Size(430, 128);
+            this.optionsList.Size = new System.Drawing.Size(430, 144);
             this.optionsList.TabIndex = 16;
             this.optionsList.UseCompatibleStateImageBehavior = false;
             this.optionsList.View = System.Windows.Forms.View.Details;
@@ -141,7 +141,7 @@ namespace SmaliPatcher
             this.patchOptionsLabel.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (214)))), ((int) (((byte) (214)))), ((int) (((byte) (214)))));
             this.patchOptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.patchOptionsLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (64)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
-            this.patchOptionsLabel.Location = new System.Drawing.Point(12, 256);
+            this.patchOptionsLabel.Location = new System.Drawing.Point(12, 240);
             this.patchOptionsLabel.Name = "patchOptionsLabel";
             this.patchOptionsLabel.Size = new System.Drawing.Size(109, 20);
             this.patchOptionsLabel.TabIndex = 18;

@@ -10,13 +10,13 @@ namespace SmaliPatcher
 {
     public class Patch
     {
-        private readonly List<string> _processedFiles = new List<string>();
         private Adb _adb;
         private bool _dexPatcherCoreRequired;
         private string _dexPatcherTarget;
         private Download _download;
         private bool _hasBeenDeodexed;
         private MainForm _mainForm;
+        private readonly List<string> _processedFiles = new List<string>();
         public List<Patches> Patches;
 
         public void Init(object sender)
@@ -144,7 +144,7 @@ namespace SmaliPatcher
             _download.DownloadMagisk();
         }
 
-        private void JarDecompile(string jarAddress)
+        public void JarDecompile(string jarAddress)
         {
             string fileName = Path.GetFileName(jarAddress);
             if (!Directory.Exists("bin") || !File.Exists("bin\\apktool.jar"))
@@ -175,7 +175,7 @@ namespace SmaliPatcher
             _hasBeenDeodexed = false;
         }
 
-        private void JarCompile(string outputFile, string sourceDirectory)
+        public void JarCompile(string outputFile, string sourceDirectory)
         {
             if (!Directory.Exists("bin") || !File.Exists("bin\\apktool.jar"))
                 return;
@@ -246,7 +246,7 @@ namespace SmaliPatcher
             }
         }
 
-        private void OdexCompile(string targetFileNoExt, string basePath)
+        public void OdexCompile(string targetFileNoExt, string basePath)
         {
             if (!Directory.Exists("bin") || !File.Exists("bin\\smali.jar"))
                 return;
@@ -278,7 +278,7 @@ namespace SmaliPatcher
             }
         }
 
-        private void DexPatcher(string jar, string dexPatch)
+        public void DexPatcher(string jar, string dexPatch)
         {
             if (!Directory.Exists("bin") || !File.Exists("bin\\dexpatcher.jar"))
                 return;
@@ -306,7 +306,7 @@ namespace SmaliPatcher
             _mainForm.DebugUpdate("\n==> Merged patch: " + Path.GetFileNameWithoutExtension(dexPatch));
         }
 
-        private void VdexExtract(string vdexAddress, string jarFile)
+        public void VdexExtract(string vdexAddress, string jarFile)
         {
             if (!Directory.Exists("bin") || !File.Exists("bin\\vdexExtractor.exe"))
                 return;
@@ -543,6 +543,38 @@ namespace SmaliPatcher
                         str1 + "com\\android\\server\\LocationManagerService.smali", null);
                 }
             }
+            if (GetPatchStatus("GNSS updates") && GetPatchTargetFile("GNSS updates") == withoutExtension + ".jar")
+            {
+                str1 = GetPath("com\\android\\server\\location\\GnssLocationProvider.smali");
+                if (File.Exists(str1 + "com\\android\\server\\location\\GnssLocationProvider.smali"))
+                {
+                    string str2 = File.ReadAllText(str1 + "com\\android\\server\\location\\GnssLocationProvider.smali");
+                    using (StreamWriter streamWriter =
+                        new StreamWriter(str1 + "com\\android\\server\\location\\GnssLocationProvider.smali.new"))
+                    {
+                        if (str2.Contains(".method private reportLocation"))
+                        {
+                            int num = str2.LastIndexOf(".method private reportLocation(");
+                            while (str2.Substring(num, 7) != ".locals" && str2.Substring(num, 10) != ".registers")
+                                ++num;
+                            if (str2.Substring(num, 7) == ".locals")
+                                num += 8;
+                            if (str2.Substring(num, 10) == ".registers")
+                                num += 11;
+                            while (int.TryParse(str2.Substring(num, 1), out result))
+                                ++num;
+                            int startIndex = num;
+                            while (str2.Substring(startIndex, 11) != ".end method")
+                                ++startIndex;
+                            str2 = str2.Substring(0, num) + "\n\n    return-void\n\n" + str2.Substring(startIndex);
+                            _mainForm.DebugUpdate("\n==> Patched gnss updates function");
+                        }
+                        streamWriter.Write(str2);
+                    }
+                    File.Replace(str1 + "com\\android\\server\\location\\GnssLocationProvider.smali.new",
+                        str1 + "com\\android\\server\\location\\GnssLocationProvider.smali", null);
+                }
+            }
             if (GetPatchStatus("Secure flag") && GetPatchTargetFile("Secure flag") == withoutExtension + ".jar")
             {
                 string path1 = GetPath("com\\android\\server\\wm\\WindowManagerService.smali");
@@ -581,19 +613,49 @@ namespace SmaliPatcher
                             while (str2.Substring(num, 14) != "invoke-virtual")
                                 --num;
                             str2 = str2.Substring(0, num) + "const/4 " + str3 + ", 0x0\n\n    " + str2.Substring(num);
-                            _mainForm.DebugUpdate("\n==> Patched secure flag boolean");
+                            _mainForm.DebugUpdate("\n==> Patched screen capture boolean");
                         }
                         streamWriter.Write(str2);
                     }
                     File.Replace(path1 + "com\\android\\server\\wm\\WindowManagerService.smali.new",
                         path1 + "com\\android\\server\\wm\\WindowManagerService.smali", null);
                 }
-                string path2 = GetPath("com\\android\\server\\wm\\WindowSurfaceController.smali");
-                if (File.Exists(path2 + "com\\android\\server\\wm\\WindowSurfaceController.smali"))
+                string path2 = GetPath("com\\android\\server\\wm\\ScreenshotController.smali");
+                if (File.Exists(path2 + "com\\android\\server\\wm\\ScreenshotController.smali"))
                 {
-                    string str2 = File.ReadAllText(path2 + "com\\android\\server\\wm\\WindowSurfaceController.smali");
+                    string str2 = File.ReadAllText(path2 + "com\\android\\server\\wm\\ScreenshotController.smali");
                     using (StreamWriter streamWriter =
-                        new StreamWriter(path2 + "com\\android\\server\\wm\\WindowSurfaceController.smali.new"))
+                        new StreamWriter(path2 + "com\\android\\server\\wm\\ScreenshotController.smali.new"))
+                    {
+                        if (str2.Contains(".method private preventTakingScreenshotToTargetWindow"))
+                        {
+                            int num = str2.LastIndexOf(".method private preventTakingScreenshotToTargetWindow(");
+                            while (str2.Substring(num, 7) != ".locals" && str2.Substring(num, 10) != ".registers")
+                                ++num;
+                            if (str2.Substring(num, 7) == ".locals")
+                                num += 8;
+                            if (str2.Substring(num, 10) == ".registers")
+                                num += 11;
+                            while (int.TryParse(str2.Substring(num, 1), out result))
+                                ++num;
+                            int startIndex = num;
+                            while (str2.Substring(startIndex, 11) != ".end method")
+                                ++startIndex;
+                            str2 = str2.Substring(0, num) + "\n\n    const/4 v0, 0x0\n\n    return v0\n\n" +
+                                   str2.Substring(startIndex);
+                            _mainForm.DebugUpdate("\n==> Patched screenshot controller");
+                        }
+                        streamWriter.Write(str2);
+                    }
+                    File.Replace(path2 + "com\\android\\server\\wm\\ScreenshotController.smali.new",
+                        path2 + "com\\android\\server\\wm\\ScreenshotController.smali", null);
+                }
+                string path3 = GetPath("com\\android\\server\\wm\\WindowSurfaceController.smali");
+                if (File.Exists(path3 + "com\\android\\server\\wm\\WindowSurfaceController.smali"))
+                {
+                    string str2 = File.ReadAllText(path3 + "com\\android\\server\\wm\\WindowSurfaceController.smali");
+                    using (StreamWriter streamWriter =
+                        new StreamWriter(path3 + "com\\android\\server\\wm\\WindowSurfaceController.smali.new"))
                     {
                         if (str2.Contains(".method setSecure("))
                         {
@@ -610,21 +672,21 @@ namespace SmaliPatcher
                             while (str2.Substring(startIndex, 11) != ".end method")
                                 ++startIndex;
                             str2 = str2.Substring(0, num) + "\n\n    return-void\n\n" + str2.Substring(startIndex);
-                            _mainForm.DebugUpdate("\n==> Patched secure controller function");
+                            _mainForm.DebugUpdate("\n==> Patched set secure function");
                         }
                         streamWriter.Write(str2);
                     }
-                    File.Replace(path2 + "com\\android\\server\\wm\\WindowSurfaceController.smali.new",
-                        path2 + "com\\android\\server\\wm\\WindowSurfaceController.smali", null);
+                    File.Replace(path3 + "com\\android\\server\\wm\\WindowSurfaceController.smali.new",
+                        path3 + "com\\android\\server\\wm\\WindowSurfaceController.smali", null);
                 }
-                string path3 = GetPath("com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali");
-                if (File.Exists(path3 + "com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali"))
+                string path4 = GetPath("com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali");
+                if (File.Exists(path4 + "com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali"))
                 {
                     string str2 =
-                        File.ReadAllText(path3 +
+                        File.ReadAllText(path4 +
                                          "com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali");
                     using (StreamWriter streamWriter =
-                        new StreamWriter(path3 +
+                        new StreamWriter(path4 +
                                          "com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali.new"))
                     {
                         if (str2.Contains(".method public setScreenCaptureDisabled("))
@@ -642,7 +704,7 @@ namespace SmaliPatcher
                             while (str2.Substring(startIndex, 11) != ".end method")
                                 ++startIndex;
                             str2 = str2.Substring(0, num) + "\n\n    return-void\n\n" + str2.Substring(startIndex);
-                            _mainForm.DebugUpdate("\n==> Patched secure capture function");
+                            _mainForm.DebugUpdate("\n==> Patched capture function");
                         }
                         if (str2.Contains(".method public getScreenCaptureDisabled("))
                         {
@@ -660,12 +722,12 @@ namespace SmaliPatcher
                                 ++startIndex;
                             str2 = str2.Substring(0, num) + "\n\n    const/4 v0, 0x1\n\n    return v0\n\n" +
                                    str2.Substring(startIndex);
-                            _mainForm.DebugUpdate("\n==> Patched get secure capture function");
+                            _mainForm.DebugUpdate("\n==> Patched get capture function");
                         }
                         streamWriter.Write(str2);
                     }
-                    File.Replace(path3 + "com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali.new",
-                        path3 + "com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali", null);
+                    File.Replace(path4 + "com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali.new",
+                        path4 + "com\\android\\server\\devicepolicy\\DevicePolicyManagerService.smali", null);
                 }
                 str1 = GetPath("com\\android\\server\\devicepolicy\\DevicePolicyCacheImpl.smali");
                 if (File.Exists(str1 + "com\\android\\server\\devicepolicy\\DevicePolicyCacheImpl.smali"))
@@ -690,7 +752,7 @@ namespace SmaliPatcher
                             while (str2.Substring(startIndex, 11) != ".end method")
                                 ++startIndex;
                             str2 = str2.Substring(0, num) + "\n\n    return-void\n\n" + str2.Substring(startIndex);
-                            _mainForm.DebugUpdate("\n==> Patched secure capture function");
+                            _mainForm.DebugUpdate("\n==> Patched capture function");
                         }
                         if (str2.Contains(".method public getScreenCaptureDisabled("))
                         {
@@ -708,7 +770,7 @@ namespace SmaliPatcher
                                 ++startIndex;
                             str2 = str2.Substring(0, num) + "\n\n    const/4 v0, 0x1\n\n    return v0\n\n" +
                                    str2.Substring(startIndex);
-                            _mainForm.DebugUpdate("\n==> Patched get secure capture function");
+                            _mainForm.DebugUpdate("\n==> Patched get capture function");
                         }
                         streamWriter.Write(str2);
                     }
